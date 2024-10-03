@@ -1,0 +1,121 @@
+.features-container {
+  display: none;
+}
+
+.features-carousel {
+  display: block;
+}
+
+.feature-wrapper {
+  width: 100%;
+  padding: 0 10px;
+  margin-bottom: 20px;
+}
+
+.feature-card {
+  width: 100%;
+  padding-bottom: 100%;
+  position: relative;
+}
+
+.feature-card > * {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 1.5rem;
+}
+
+@media (min-width: 1024px) {
+  .features-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .features-carousel {
+    display: none;
+  }
+
+  .feature-wrapper {
+    width: 33.333%;
+    padding: 0 15px;
+    margin-bottom: 30px;
+  }
+}
+
+/* Styles for slick carousel */
+.slick-slide {
+  padding: 0 10px;
+}
+
+.slick-list {
+  margin: 0 -10px;
+}
+
+.slick-prev,
+.slick-next {
+  font-size: 0;
+  line-height: 0;
+  position: absolute;
+  top: 50%;
+  display: block;
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  transform: translate(0, -50%);
+  cursor: pointer;
+  color: transparent;
+  border: none;
+  outline: none;
+  background: #333;
+  border-radius: 50%;
+  z-index: 1;
+}
+
+.slick-prev:hover,
+.slick-next:hover {
+  background: #555;
+}
+
+.slick-prev:before,
+.slick-next:before {
+  font-family: 'slick';
+  font-size: 20px;
+  line-height: 1;
+  opacity: 1;
+  color: white;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.slick-prev {
+  left: -40px;
+}
+
+.slick-next {
+  right: -40px;
+}
+
+@media (max-width: 768px) {
+  .slick-prev {
+    left: -30px;
+  }
+  .slick-next {
+    right: -30px;
+  }
+}
+
+@media (max-width: 480px) {
+  .slick-prev {
+    left: -20px;
+  }
+  .slick-next {
+    right: -20px;
+  }
+}
