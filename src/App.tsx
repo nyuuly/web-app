@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router-dom";
+import { Routes, Route } from 'react-router-dom';
 import Header from "./components/Header";
 import TaskList from "./pages/TaskList";
 import InformationHub from "./pages/InformationHub";

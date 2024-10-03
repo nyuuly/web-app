@@ -1,49 +1,32 @@
 "use client";
 import React from "react";
-import logo from "../assets/logo.svg";
+import { Link } from 'react-router-dom';
+import logoImg from '../assets/logo.svg';
 
 const Header: React.FC = () => {
   return (
-    <header className="bg-blue-700">
-      <div className="container mx-auto flex items-center justify-between p-4 shadow-sm">
-        {/* container mx-auto p-4 */}
-        {/* Logo or brand name */}
-        <div className="text-xl font-bold">
-          <img src={logo} alt="Logo" className="h-8 w-auto" />
+    <header className="bg-blue-500 text-white p-4">
+      <nav className="container mx-auto flex justify-between items-center">
+        <div className="flex items-center">
+          <Link to="/" className="text-2xl font-bold">
+            <img src={logoImg} alt="Logo" className="mr-2" />
+          </Link>
         </div>
-
-        {/* Navigation links */}
-        <nav className="space-x-4">
-          <a href="/" className="text-white-500 hover:text-orange-400">
-            Home
-          </a>
-          <a href="/tasks" className="text-white-500 hover:text-orange-400">
-            Tasks
-          </a>
-          <a href="/info" className="text-white-500 hover:text-orange-400">
-            Information
-          </a>
-        </nav>
-
-        {/* Right-aligned buttons */}
-        <ul className="flex space-x-4 items-center">
-          <li>
-            <button className="px-3 py-1 text-sm text-white-500 hover:text-gray-900">
-              Switch Language
-            </button>
-          </li>
-          <li>
-            <button className="px-3 py-1 text-sm text-white-500 hover:text-gray-900">
-              Sign In
-            </button>
-          </li>
-          <li>
-            <button className="px-3 py-1 text-sm text-white-500 bg-indigo-600 rounded-md hover:bg-indigo-700">
-              Sign Up
-            </button>
-          </li>
+        <ul className="flex space-x-4">
+          <li><Link to="/" className="hover:text-blue-200">Home</Link></li>
+          <li><Link to="/tasks" className="hover:text-blue-200">Tasks</Link></li>
+          <li><Link to="/info" className="hover:text-blue-200">Information</Link></li>
         </ul>
-      </div>
+        <div className="flex items-center space-x-4">
+          <button className="bg-white text-blue-500 px-3 py-1 rounded hover:bg-blue-100">Sign In</button>
+          <button className="bg-white text-blue-500 px-3 py-1 rounded hover:bg-blue-100">Sign Up</button>
+          <select className="bg-white text-blue-500 px-2 py-1 rounded">
+            <option value="en">EN</option>
+            <option value="es">ES</option>
+            <option value="fr">FR</option>
+          </select>
+        </div>
+      </nav>
     </header>
   );
 };
