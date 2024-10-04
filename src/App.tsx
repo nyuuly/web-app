@@ -1,5 +1,6 @@
 import { Routes, Route } from 'react-router-dom';
 import Header from "./components/Header";
+import Footer from "./components/Footer"; // Import the new Footer component
 import TaskList from "./pages/TaskList";
 import InformationHub from "./pages/InformationHub";
 import Home from "./pages/Home";
@@ -15,9 +16,7 @@ function App() {
           <Route path="/info" element={<InformationHub />} />
           <Route path="/about" element={<AboutUs />} />
         </Routes>
-        <footer className="container mx-auto mt-8 text-center text-black">
-          © 2024 Nyuuly.com All rights reserved.
-        </footer>
+        <Footer /> {/* Replace the old footer with the new Footer component */}
     </>
   )
 }

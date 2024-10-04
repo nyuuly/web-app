@@ -35,11 +35,11 @@ const SignUp: React.FC<SignUpProps> = ({ scrollThreshold }) => {
       }}
     >
       <div className="max-w-4xl mx-auto flex flex-col md:flex-row items-center justify-between">
-        <div className="mb-4 md:mb-0 text-white-500">
-          <h1 className="text-2xl font-bold mb-2">Sign up today</h1>
-          <p className="text-lg">Get started with our tasklist and personalised reminders for you</p>
+        <div className="mb-2 md:mb-0 text-white-500">
+          <h1 className="text-xl font-bold mb-2">Sign up today</h1>
+          <p>Get started with our tasklist and personalised reminders for you</p>
         </div>
-        <button className="bg-orange-400 px-6 py-3 rounded-full text-lg font-semibold hover:bg-orange-500 transition-colors">
+        <button className="bg-orange-400 px-6 py-2 rounded-full text-lg font-semibold hover:bg-orange-500 transition-colors">
           Register now
         </button>
       </div>
