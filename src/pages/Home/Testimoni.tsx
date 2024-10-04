@@ -5,19 +5,17 @@ import 'slick-carousel/slick/slick-theme.css';
 import './Testimoni.css';
 
 interface TestimonialProps {
-  name: string;
-  role: string;
   content: string;
   image: string;
 }
 
-const Testimonial: React.FC<TestimonialProps> = ({ name, role, content, image }) => (
+const Testimonial: React.FC<TestimonialProps> = ({ content, image }) => (
   <div className="px-4">
-    <div className="bg-white-500 rounded-lg shadow-md p-6">
-      <img src={image} alt={name} className="w-16 h-16 rounded-full mx-auto mb-4" />
-      <h3 className="text-xl font-semibold text-center mb-2">{name}</h3>
-      <p className="text-gray-600 text-center mb-4">{role}</p>
-      <p className="text-gray-700 text-center">{content}</p>
+    <div className="bg-white-500 rounded-lg shadow-md py-4 h-64 flex flex-col items-center justify-between">
+      <div className="w-full mb-4"> {/* Added a wrapper div */}
+        <img src={image} alt="Testimonial" className="w-full h-auto object-cover" />
+      </div>
+      <p className="text-gray-700 text-center flex-grow flex items-center">{content}</p>
     </div>
   </div>
 );
@@ -49,36 +47,28 @@ const Testimoni: React.FC = () => {
 
   const testimonials = [
     {
-      name: "John Doe",
-      role: "CEO, TechCorp",
-      content: "Arrive confidentally in Japan",
-      image: "https://via.placeholder.com/150"
+      content: "Arrive confidently in Japan",
+      image: "https://via.placeholder.com/150x84"
     },
     {
-      name: "Jane Smith",
-      role: "Designer, CreativeCo",
       content: "Get your plan in order, all in one place",
-      image: "https://via.placeholder.com/150"
+      image: "https://via.placeholder.com/150x84"
     },
     {
-      name: "Mike Johnson",
-      role: "Developer, WebSolutions",
       content: "Always on integrator for all your needs",
-      image: "https://via.placeholder.com/150"
+      image: "https://via.placeholder.com/150x84"
     },
     {
-      name: "Sarah Williams",
-      role: "Marketing Manager, BrandBoost",
       content: "This tool has significantly improved our team's productivity and collaboration.",
-      image: "https://via.placeholder.com/150"
+      image: "https://via.placeholder.com/150x84"
     }
   ];
 
   return (
-    <div className="py-12 px-10">
-       <h1 className="text-3xl font-bold text-gray-900 mb-4 text-center">
-          Designed with you in mind
-          </h1>
+    <div className="py-12 px-10 text-black">
+      <h2 className="text-3xl font-bold text-center mb-4">
+        Reasons to live in Japan
+      </h2>
       <Slider {...settings}>
         {testimonials.map((testimonial, index) => (
           <Testimonial key={index} {...testimonial} />

@@ -4,6 +4,7 @@ import Testimoni from "./Testimoni";
 import Features from "./Features";
 import DesignedForYou from "./DesignedForYou";
 import SignUp from "./SignUp";
+import FrequentQuestion from "./FrequentQuestion"; // Import the new component
 
 const Home: React.FC = () => {
   return (
@@ -37,7 +38,11 @@ const Home: React.FC = () => {
           <div className="flex flex-col w-full my-2" id="features">
             <Features />
           </div>
-          <div className="flex flex-col w-full my-2" id="testimoni">
+        
+          <div className="flex flex-col w-full my-2" id="faq">
+            <FrequentQuestion />
+          </div>
+            <div className="flex flex-col w-full my-2" id="testimoni">
             <Testimoni />
           </div>
         </div>
