@@ -3,6 +3,7 @@ import Header from "./components/Header";
 import TaskList from "./pages/TaskList";
 import InformationHub from "./pages/InformationHub";
 import Home from "./pages/Home";
+import AboutUs from "./pages/AboutUs"; // Import the new AboutUs component
 
 function App() {
   return (
@@ -12,9 +13,10 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/tasks" element={<TaskList />} />
           <Route path="/info" element={<InformationHub />} />
+          <Route path="/about" element={<AboutUs />} />
         </Routes>
-        <footer className="container mx-auto mt-8 text-center text-gray-600">
-          © 2023 Your Company Name. All rights reserved.
+        <footer className="container mx-auto mt-8 text-center text-black">
+          © 2024 Nyuuly.com All rights reserved.
         </footer>
     </>
   )
