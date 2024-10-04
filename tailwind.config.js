@@ -24,8 +24,9 @@ export default {
         600: "#0B132A",
       },
       blue: {
-        100: "#D1EFFF",
-        200: "#8BDDFF",
+        100: "#E9F5FF",
+        200: "#D1EFFF",
+        400: "#8BDDFF",
         700: "#051C58",
 
       },
@@ -50,6 +51,7 @@ export default {
       },
       purple: {
         100: '#E6E6FA',
+        400: '#6962BF',
       },
     },
     
