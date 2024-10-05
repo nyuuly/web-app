@@ -22,11 +22,13 @@ const Testimonial: React.FC<TestimonialProps> = ({ content, image }) => (
 
 const Testimoni: React.FC = () => {
   const settings = {
-    dots: true,
+    dots: false,
     infinite: true,
     speed: 500,
     slidesToShow: 3,
     slidesToScroll: 1,
+    draggable: true,
+    swipe: true,
     responsive: [
       {
         breakpoint: 1024,
