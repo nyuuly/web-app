@@ -12,7 +12,7 @@ const Home: React.FC = () => {
 
   return (
     <main>
-      <div className="bg-blue-100 py-12 pb-32">
+      <div className="bg-blue-100 py-12 pb-24">
         <div className="container mx-auto px-4">
           <div className="flex flex-col md:flex-row items-center">
             {/* Left-hand side: Text content */}
