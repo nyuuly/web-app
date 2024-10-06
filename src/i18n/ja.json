@@ -16,5 +16,14 @@
   "getPlanInOrder": "計画を一箇所で整理",
   "getPlanInOrderDesc": "タスクを追跡し、簡単に整理を維持できます。",
   "alwaysOnIntegrator": "あなたのニーズに常に対応するインテグレーター",
-  "alwaysOnIntegratorDesc": "いつでもどこでもサービスと情報にアクセスできます。"
+  "alwaysOnIntegratorDesc": "いつでもどこでもサービスと情報にアクセスできます。",
+  "exploreOurServices": "サービス探索する",
+  "supportingYourJourney": "Nyuulyであなたの旅のすべての段階をサポート",
+  "mobileSIM": "モバイルSIM（近日公開）",
+  "taskListMockup": "タスクリストモックアップ",
+  "taskListDescription": "タスクリストは、出発前、到着後、または日本での生活に慣れる過程で、スムーズな移行のためのガイドを提供します。",
+  "taskListGuides": "ここでは、仕事、住居、銀行など、日本での生活に関するさまざまなガイドを見つけることができます。",
+  "taskListFeature": "タスクリスト機能は、日本への引っ越し中に組織化され、軌道に乗り続けるのに役立ちます。",
+  "informationHubPlaceholder": "情報ハブコンテンツのプレースホルダー",
+  "mobileSIMPlaceholder": "モバイルSIMコンテンツのプレースホルダー"
 }

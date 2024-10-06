@@ -36,7 +36,7 @@ const Header: React.FC = () => {
               <div className="relative">
                 <button 
                   className="text-white hover:text-orange-200 text-sm flex items-center"
-                  onMouseEnter={() => setIsLanguageMenuOpen(true)}
+                  // onMouseEnter={() => setIsLanguageMenuOpen(true)}
                   onClick={() => setIsLanguageMenuOpen(!isLanguageMenuOpen)}
                 >
                   <FiGlobe className="mr-1" />
