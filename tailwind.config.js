@@ -31,6 +31,9 @@ export default {
         700: "#051C58",
 
       },
+      yellow: {
+        200: "#FFD755"
+      },
       orange: {
         100: "#FFECEC",
         200: "#FFC8C8", // Add this line (choose your desired color)

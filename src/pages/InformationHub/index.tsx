@@ -1,6 +1,7 @@
 import React from "react";
 import infoBannerImage from "../../assets/img/banner_2-min.png";
 import FromToForm from "./FromToForm";
+import LocalInfo from "./LocalInfo";
 
 const InformationHub: React.FC = () => {
   return (
@@ -14,6 +15,7 @@ const InformationHub: React.FC = () => {
       >
         <FromToForm />
       </div>
+      <LocalInfo />
     </>
   );
 };
