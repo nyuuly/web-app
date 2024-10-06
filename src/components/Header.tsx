@@ -3,13 +3,14 @@ import React, { useState } from "react";
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import logoImg from '../assets/logo.svg';
+import { changeLanguage } from '../i18n/i18n'; // Import the changeLanguage function
 
 const Header: React.FC = () => {
   const { t, i18n } = useTranslation();
   const [isLanguageMenuOpen, setIsLanguageMenuOpen] = useState(false);
 
-  const changeLanguage = (lng: string) => {
-    i18n.changeLanguage(lng);
+  const handleChangeLanguage = async (lng: string) => {
+    await changeLanguage(lng);
     setIsLanguageMenuOpen(false);
   };
 
@@ -40,9 +41,9 @@ const Header: React.FC = () => {
                     className="absolute right-0 mt-2 w-48 bg-blue-100 shadow-lg"
                     onMouseLeave={() => setIsLanguageMenuOpen(false)}
                   >
-                    <button onClick={() => changeLanguage('en')} className="block px-4 py-2 text-sm text-black hover:bg-blue-200 w-full text-left">English</button>
-                    <button onClick={() => changeLanguage('vi')} className="block px-4 py-2 text-sm text-black hover:bg-blue-200 w-full text-left">Tiếng Việt</button>
-                    <button onClick={() => changeLanguage('ja')} className="block px-4 py-2 text-sm text-black hover:bg-blue-200 w-full text-left">日本語</button>
+                    <button onClick={() => handleChangeLanguage('en')} className="block px-4 py-2 text-sm text-black hover:bg-blue-200 w-full text-left">English</button>
+                    <button onClick={() => handleChangeLanguage('vi')} className="block px-4 py-2 text-sm text-black hover:bg-blue-200 w-full text-left">Tiếng Việt</button>
+                    <button onClick={() => handleChangeLanguage('ja')} className="block px-4 py-2 text-sm text-black hover:bg-blue-200 w-full text-left">日本語</button>
                   </div>
                 )}
               </div>
