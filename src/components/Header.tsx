@@ -2,6 +2,8 @@
 import React, { useState } from "react";
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { FiGlobe } from "react-icons/fi";
+import { FaRegQuestionCircle, FaRegUserCircle } from "react-icons/fa";
 import logoImg from '../assets/logo.svg';
 import { changeLanguage } from '../i18n/i18n'; // Import the changeLanguage function
 
@@ -27,14 +29,19 @@ const Header: React.FC = () => {
           {/* Help, Language, Signin | Register */}
           <div className="bg-black bg-opacity-50 rounded-full px-4 py-2">
             <div className="flex items-center space-x-4">
-              <button className="text-white hover:text-orange-200 text-sm">{t('help')}</button>
+              <button className="text-white hover:text-orange-200 text-sm flex items-center">
+              <FaRegQuestionCircle className="mr-1"/>
+                {t('help')}
+              </button>
               <div className="relative">
                 <button 
-                  className="text-white hover:text-orange-200 text-sm"
+                  className="text-white hover:text-orange-200 text-sm flex items-center"
                   onMouseEnter={() => setIsLanguageMenuOpen(true)}
                   onClick={() => setIsLanguageMenuOpen(!isLanguageMenuOpen)}
                 >
-                  {t('language')}: {i18n.language.toUpperCase()}
+                  <FiGlobe className="mr-1" />
+                  {/* {t('language')}: {i18n.language.toUpperCase()} */}
+                  {t('language')}
                 </button>
                 {isLanguageMenuOpen && (
                   <div 
@@ -47,7 +54,7 @@ const Header: React.FC = () => {
                   </div>
                 )}
               </div>
-              <button className="text-white hover:text-orange-200 text-sm">{t('signin')}</button>
+              <button className="text-white hover:text-orange-200 text-sm flex items-center"><FaRegUserCircle className="mr-1"/>{t('signin')}</button>
               <span className="text-white text-sm">|</span>
               <button className="text-white hover:text-orange-200 text-sm">{t('register')}</button>
             </div>
