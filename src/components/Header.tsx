@@ -33,7 +33,7 @@ const Header: React.FC = () => {
                   onMouseEnter={() => setIsLanguageMenuOpen(true)}
                   onClick={() => setIsLanguageMenuOpen(!isLanguageMenuOpen)}
                 >
-                  {t('language')}
+                  {t('language')}: {i18n.language.toUpperCase()}
                 </button>
                 {isLanguageMenuOpen && (
                   <div 
