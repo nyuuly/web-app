@@ -1,4 +1,5 @@
 import React from "react";
+import { useTranslation } from 'react-i18next';
 import bannerImage from "../../assets/img/jp_1-min.png";
 import Testimoni from "./Testimoni";
 import Features from "./Features";
@@ -7,6 +8,8 @@ import SignUp from "./SignUp";
 import FrequentQuestion from "./FrequentQuestion"; // Import the new component
 
 const Home: React.FC = () => {
+  const { t } = useTranslation();
+
   return (
     <main>
       <div className="bg-blue-100 py-12 pb-32">
@@ -14,16 +17,16 @@ const Home: React.FC = () => {
           <div className="flex flex-col md:flex-row items-center">
             {/* Left-hand side: Text content */}
             <div className="md:w-1/2 md:pr-8 mb-8 md:mb-0 text-black px-4">
-              <h1 className="text-6xl font-bold mb-6">Move with confidence.</h1>
+              <h1 className="text-6xl font-bold mb-6">{t('moveWithConfidence')}</h1>
               
               <p className="text-lg font-bold mb-4">
-              Embark on your new adventure and be fully prepared for a new life in Japan
+                {t('embarkOnNewAdventure')}
               </p>
             </div>
             <div className="md:w-1/2">
               <img
                 src={bannerImage}
-                alt="Platform Preview"
+                alt={t('platformPreview')}
                 className="w-full h-auto rounded-lg shadow-lg"
               />
             </div>
@@ -32,7 +35,7 @@ const Home: React.FC = () => {
       </div>
 
       <div className="container mx-auto px-4 pb-24">
-        <div className=" -mt-24"> {/* Added negative margin-top here */}
+        <div className="-mt-24"> {/* Added negative margin-top here */}
           <DesignedForYou />
 
           <div className="flex flex-col w-full my-2" id="features">
