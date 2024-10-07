@@ -4,7 +4,13 @@
   "signin": "Đăng nhập",
   "register": "Đăng ký",
   "home": "Trang chủ",
-  "aboutUs": "Về chúng tôi",
+  "aboutUs": {
+    "title": "Về chúng tôi",
+    "intro": {
+      "title": "Chúng tôi là Nyuuly",
+      "description": "Tại Nyuuly, chúng tôi tin rằng việc chuyển đến Nhật Bản một cách suôn sẻ sẽ mở ra hạnh phúc và cơ hội. Sứ mệnh của chúng tôi là cung cấp các công cụ và hỗ trợ bạn cần để chuyển đến một cách dễ dàng. Hãy cùng chúng tôi tạo nên một cuộc sống trọn vẹn tại Nhật Bản!"
+    }
+  },
   "taskList": "Danh sách công việc",
   "informationHub": "Trung tâm thông tin",
   "moveWithConfidence": "Di chuyển với sự tự tin.",

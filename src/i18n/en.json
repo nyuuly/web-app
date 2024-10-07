@@ -4,7 +4,13 @@
   "signin": "Sign In",
   "register": "Register",
   "home": "Home",
-  "aboutUs": "About Us",
+  "aboutUs": {
+    "title": "About Us",
+    "intro": {
+      "title": "We are Nyuuly",
+      "description": "At Nyuuly, we believe that a smooth transition to Japan unlocks happiness and opportunity. Our mission is to provide the tools and support you need for an effortless move. Join us in creating a fulfilling life in Japan!"
+    }
+  },
   "taskList": "Task List",
   "informationHub": "Information Hub",
   "moveWithConfidence": "Move with confidence.",

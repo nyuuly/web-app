@@ -4,7 +4,13 @@
   "signin": "サインイン",
   "register": "登録",
   "home": "ホーム",
-  "aboutUs": "会社概要",
+  "aboutUs": {
+    "title": "会社概要",
+    "intro": {
+      "title": "私たちはNyuulyです",
+      "description": "Nyuulyでは、日本へのスムーズな移行が幸せと機会を開くと信じています。私たちの使命は、あなたが苦労なく移動するために必要なツールとサポートを提供することです。日本での充実した生活を創造する旅に、私たちと一緒に参加しましょう！"
+    }
+  },
   "taskList": "タスクリスト",
   "informationHub": "情報ハブ",
   "moveWithConfidence": "自信を持って移動しよう。",

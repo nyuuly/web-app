@@ -1,7 +1,10 @@
 import React from 'react';
 import ScrollAnimationWrapper from '../../components/misc/ScrollAnimationWrapper';
+import { useTranslation } from 'react-i18next';
 
 const Intro: React.FC = () => {
+  const { t } = useTranslation();
+
   return (
       <div className="container mx-auto py-12 pb-24 -mt-32">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -14,9 +17,9 @@ const Intro: React.FC = () => {
           </div>
           <ScrollAnimationWrapper>
           <div className="flex flex-col justify-center pt-24 md:pt-0">
-            <h2 className="text-3xl font-bold mb-4">We are Nyuuly</h2>
+            <h2 className="text-3xl font-bold mb-4">{t('aboutUs.intro.title')}</h2>
             <p className="text-lg">
-              At Nyuuly, we believe that a smooth transition to Japan unlocks happiness and opportunity. Our mission is to provide the tools and support you need for an effortless move. Join us in creating a fulfilling life in Japan!
+              {t('aboutUs.intro.description')}
             </p>
           </div>
           </ScrollAnimationWrapper>
