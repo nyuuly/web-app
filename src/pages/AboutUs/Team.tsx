@@ -7,7 +7,7 @@ const Team: React.FC = () => {
       <div className="container mx-auto py-12">
         {/* Top row */}
         <div className="mb-8">
-          <h2 className="text-3xl font-bold text-center">Meet the Team</h2>
+          <h2 className="text-4xl font-bold text-center">Meet the Team</h2>
         </div>
 
         {/* Bottom row */}

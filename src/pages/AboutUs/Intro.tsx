@@ -16,7 +16,7 @@ const Intro: React.FC = () => {
             <img src="https://via.placeholder.com/150x84" alt="Placeholder 2" className="w-full h-full rounded-lg object-cover" />
           </div>
           <div className="flex flex-col justify-center pt-24 md:pt-0">
-            <h2 className="text-3xl font-bold mb-4">{t('aboutUs.intro.title')}</h2>
+            <h2 className="text-6xl font-bold mb-4">{t('aboutUs.intro.title')}</h2>
             <p className="text-lg">
               {t('aboutUs.intro.description')}
             </p>

@@ -11,7 +11,7 @@ const LocalInfo: React.FC = () => {
         <img src={mapIcon} alt={t('mapIconAlt')} className="w-[33px] h-[33px] mb-2" />
         <h3 className="text-xl font-semibold mb-4">{t('capitalOfGunma')}</h3>
         <p>{t('maebashi')}</p>
-        <p>{t('citiesInGunma')}</p>
+        <p className='text-sm'>{t('citiesInGunma')}</p>
       </div>
       <div className="p-4">
         <img src={mapIcon} alt={t('mapIconAlt')} className="w-[33px] h-[33px] mb-2" />
@@ -22,7 +22,7 @@ const LocalInfo: React.FC = () => {
         <img src={mapIcon} alt={t('mapIconAlt')} className="w-[33px] h-[33px] mb-2" />
         <h3 className="text-xl font-semibold mb-4">{t('gunmaPopulation')}</h3>
         <p>{t('populationNumber')}</p>
-        <p>{t('dataAsOf')}</p>
+        <p className='text-sm'>{t('dataAsOf')}</p>
       </div>
     </div>
   );

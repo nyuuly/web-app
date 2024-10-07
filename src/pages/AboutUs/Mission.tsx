@@ -11,7 +11,7 @@ const Mission: React.FC = () => {
       <div className="container mx-auto px-4 py-8 text-black">
         <div className="flex flex-col md:flex-row gap-8 mb-4">
           <div className="md:w-1/2">
-            <h2 className="text-3xl font-bold mb-4">{t('aboutUs.mission.title')}</h2>
+            <h2 className="text-4xl font-bold mb-4">{t('aboutUs.mission.title')}</h2>
             <p className="text-lg">
               {t('aboutUs.mission.description')}
             </p>
@@ -29,7 +29,7 @@ const Mission: React.FC = () => {
 
         <div className="bg-gray-100 p-4 rounded-lg">
         <ScrollAnimationWrapper>
-          <h2 className="text-3xl font-bold mb-8 text-center">{t('aboutUs.values.title')}</h2>
+          <h2 className="text-4xl font-bold mb-8 text-center">{t('aboutUs.values.title')}</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {[1, 2, 3, 4].map((item) => (
               <div key={item} className="bg-blue-100 p-6 rounded-lg">

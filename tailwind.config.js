@@ -66,6 +66,13 @@ export default {
         white: '#ffffff',
         // other colors...
       },
+      fontFamily: {
+        'manrope': ['Manrope', 'sans-serif'],
+        'manuale': ['Manuale', 'serif'],
+      },
+      fontSize: {
+        // 'custom-lg': '22px',
+      },
     },
   },
   variants: {

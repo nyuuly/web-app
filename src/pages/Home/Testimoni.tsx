@@ -14,7 +14,7 @@ const Testimonial: React.FC<TestimonialProps> = ({ contentKey, image }) => {
   const { t } = useTranslation();
   return (
     <div className="px-4">
-      <div className="bg-white-500 rounded-lg shadow-md py-4 h-64 flex flex-col items-center justify-between">
+      <div className="bg-white-500 rounded-lg border border-gray-100 py-4 h-64 flex flex-col items-center justify-between">
         <div className="w-full mb-4">
           <img src={image} alt={t('testimonialImage')} className="w-full h-auto object-cover" />
         </div>
@@ -73,7 +73,7 @@ const Testimoni: React.FC = () => {
 
   return (
     <div className="py-12 px-10 text-black">
-      <h2 className="text-3xl font-bold text-center mb-4">
+      <h2 className="text-3xl font-bold text-center mb-4 font-manuale">
         {t('reasonsToLiveInJapan')}
       </h2>
       <Slider {...settings}>

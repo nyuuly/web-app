@@ -20,7 +20,7 @@ const Home: React.FC = () => {
             <div className="md:w-1/2 md:pr-8 mb-8 md:mb-0 text-black px-4">
               <h1 className="text-6xl font-bold mb-6">{t('moveWithConfidence')}</h1>
               
-              <p className="text-lg font-bold mb-4">
+              <p className="text-xl font-semibold mb-4">
                 {t('embarkOnNewAdventure')}
               </p>
             </div>

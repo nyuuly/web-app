@@ -13,8 +13,33 @@
   -moz-osx-font-smoothing: grayscale;
 }
 body {
+  font-family: 'Manrope', sans-serif;
   background-color: #FFF;
 }
+
+/* You can also set specific weights if needed */
+.font-normal {
+  font-weight: 400;
+}
+
+.font-medium {
+  font-weight: 500;
+}
+
+.font-semibold {
+  font-weight: 600;
+}
+
+.font-bold {
+  font-weight: 700;
+}
+
+/* For Manuale */
+.font-manuale {
+  font-family: 'Manuale', serif;
+  font-weight: 600;
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

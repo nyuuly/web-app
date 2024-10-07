@@ -57,7 +57,7 @@ const Features: React.FC = () => {
 
   return (
     <div className="features-container py-12 text-black">
-      <h2 className="text-3xl font-bold text-center mb-4">
+      <h2 className="text-4xl font-bold text-center mb-4 font-manuale">
         {t('exploreOurServices')}
       </h2>
       <p className="text-2xl text-center mb-12">
