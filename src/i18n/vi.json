@@ -4,7 +4,37 @@
   "signin": "Đăng nhập",
   "register": "Đăng ký",
   "home": "Trang chủ",
-  "aboutUs": "Về chúng tôi",
+  "aboutUs": {
+    "title": "Về chúng tôi",
+    "intro": {
+      "title": "Chúng tôi là Nyuuly",
+      "description": "Tại Nyuuly, chúng tôi tin rằng việc chuyển đến Nhật Bản một cách suôn sẻ sẽ mở ra hạnh phúc và cơ hội. Sứ mệnh của chúng tôi là cung cấp các công cụ và hỗ trợ bạn cần để chuyển đến một cách dễ dàng. Hãy cùng chúng tôi tạo nên một cuộc sống trọn vẹn tại Nhật Bản!"
+    },
+    "mission": {
+      "title": "Sứ mệnh của chúng tôi",
+      "description": "Sứ mệnh của chúng tôi là trao quyền cho cá nhân với các công cụ và kiến thức cần thiết để chuyển đổi cuộc sống sang Nhật Bản một cách suôn sẻ. Chúng tôi cố gắng đơn giản hóa sự phức tạp của việc di chuyển, đảm bảo rằng mọi bước trong hành trình của bạn đều được hỗ trợ và không căng thẳng.",
+      "imagePlaceholder": "Hình ảnh Sứ mệnh"
+    },
+    "values": {
+      "title": "Giá trị của chúng tôi",
+      "value1": {
+        "title": "Trao quyền",
+        "description": "Chúng tôi trao quyền cho cá nhân kiểm soát hành trình di chuyển của họ."
+      },
+      "value2": {
+        "title": "Đơn giản hóa",
+        "description": "Chúng tôi đơn giản hóa các quy trình phức tạp để việc di chuyển không còn căng thẳng."
+      },
+      "value3": {
+        "title": "Hỗ trợ",
+        "description": "Chúng tôi cung cấp hỗ trợ toàn diện ở mọi bước trên đường đi."
+      },
+      "value4": {
+        "title": "Đổi mới",
+        "description": "Chúng tôi liên tục đổi mới để cải thiện trải nghiệm di chuyển."
+      }
+    }
+  },
   "taskList": "Danh sách công việc",
   "informationHub": "Trung tâm thông tin",
   "moveWithConfidence": "Di chuyển với sự tự tin.",

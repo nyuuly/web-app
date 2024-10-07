@@ -119,7 +119,7 @@ const Header: React.FC = () => {
             >
               <nav className="flex flex-col space-y-2 p-4">
                 <Link to="/" className="hover:text-orange-200 p-1" onClick={closeMobileMenu}>{t('home')}</Link>
-                <Link to="/about" className="hover:text-orange-200 p-1" onClick={closeMobileMenu}>{t('aboutUs')}</Link>
+                <Link to="/about" className="hover:text-orange-200 p-1" onClick={closeMobileMenu}>{t('aboutUs.title')}</Link>
                 <Link to="/tasks" className="hover:text-orange-200 p-1" onClick={closeMobileMenu}>{t('taskList')}</Link>
                 <Link to="/info" className="hover:text-orange-200 p-1" onClick={closeMobileMenu}>{t('informationHub')}</Link>
               </nav>
@@ -160,7 +160,7 @@ const Header: React.FC = () => {
         <nav className="hidden md:flex justify-center mt-4">
           <ul className="flex space-x-6">
             <li><Link to="/" className="hover:text-orange-200 px-2">{t('home')}</Link></li>
-            <li><Link to="/about" className="hover:text-orange-200 px-2">{t('aboutUs')}</Link></li>
+            <li><Link to="/about" className="hover:text-orange-200 px-2">{t('aboutUs.title')}</Link></li>
             <li><Link to="/tasks" className="hover:text-orange-200 px-2">{t('taskList')}</Link></li>
             <li><Link to="/info" className="hover:text-orange-200 px-2">{t('informationHub')}</Link></li>
           </ul>
