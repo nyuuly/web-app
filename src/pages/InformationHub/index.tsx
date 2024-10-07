@@ -15,7 +15,9 @@ const InformationHub: React.FC = () => {
       >
         <FromToForm />
       </div>
-      <LocalInfo />
+      <div className="container mx-auto p-4 text-black -mt-20 mb-24">
+        <LocalInfo />
+      </div>
     </>
   );
 };

@@ -3,8 +3,7 @@ import mapIcon from '../../assets/icons/map_icon.png';
 
 const LocalInfo: React.FC = () => {
   return (
-    <div className="container mx-auto p-4 bg-yellow-200 text-black rounded-lg -mt-20">
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 bg-yellow-200 rounded-lg ">
         <div className="p-4">
           <img src={mapIcon} alt="Map Icon" className="w-[33px] h-[33px] mb-2" />
           <h3 className="text-xl font-semibold mb-4">Capital of Gunma</h3>
@@ -23,7 +22,6 @@ const LocalInfo: React.FC = () => {
           <p>Data as of 2022</p>
         </div>
       </div>
-    </div>
   );
 };
 
