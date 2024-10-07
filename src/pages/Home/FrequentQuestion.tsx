@@ -1,4 +1,5 @@
 import React from 'react';
+import { FiFileText } from "react-icons/fi";
 
 interface QuestionProps {
   question: string;
@@ -6,8 +7,11 @@ interface QuestionProps {
 
 const Question: React.FC<QuestionProps> = ({ question }) => (
   <div className="w-full md:w-1/3 p-4">
-    <div className="p-6 h-full flex items-center justify-center bg-gray-100">
-      <h3 className="text-lg font-semibold text-center">{question}</h3>
+    <div className="p-6 h-full flex flex-col bg-gray-100">
+      <h3 className="text-lg flex items-start mb-4">
+        <FiFileText className="mr-2 flex-shrink-0 mt-1" /> 
+        <span>{question}</span>
+      </h3>
     </div>
   </div>
 );

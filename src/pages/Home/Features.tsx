@@ -10,19 +10,19 @@ const Features: React.FC = () => {
 
   const TaskListContent = () => (
     <div className="flex flex-col md:flex-row gap-4">
-      <div className="md:w-1/2 bg-gray-100 p-8 rounded-lg flex flex-col items-center justify-between">
+      <div className="md:w-1/2 bg-gray-100 p-4 md:p-8 rounded-lg flex flex-col items-center justify-between">
         <img
           src={mockupImage1}
           alt={t('taskListMockup')}
           className="max-w-full h-auto mb-4"
         />
-        <p className="text-center text-xl px-12 py-4">
+        <p className="text-center text-xl md:px-12 md:py-4">
           {t('taskListDescription')}
         </p>
       </div>
       <div className="md:w-1/2 flex flex-col gap-4">
         <div className="bg-gray-100 p-4 rounded-lg flex-1">
-          <p className="text-xl mb-4 px-16 pt-8 pb-4">
+          <p className="text-xl mb-4 md:px-16 pt-8 pb-4">
             {t('taskListGuides')}
           </p>
           <div className="flex justify-center">
@@ -34,7 +34,7 @@ const Features: React.FC = () => {
           </div>
         </div>
         <div className="bg-gray-100 rounded-lg flex-1 flex flex-col justify-between">
-          <p className="text-xl mb-4 px-16 pt-8 pb-4">
+          <p className="text-xl mb-4 px-4 md:px-16 pt-8 pb-4">
             {t('taskListFeature')}
           </p>
           <div className="flex justify-center">
@@ -67,7 +67,7 @@ const Features: React.FC = () => {
         {tabs.map((tab) => (
           <button
             key={tab.name}
-            className={`px-4 py-2 mx-2 text-xl ${
+            className={`md:px-4 py-2 mx-2 md:text-xl ${
               activeTab === tab.name
                 ? "text-orange-400 border-b-4 border-orange-400 font-bold"
                 : "text-black hover:text-orange-400"
