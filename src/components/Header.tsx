@@ -1,6 +1,6 @@
 "use client";
 import React, { useState, useRef, useEffect } from "react";
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { FiGlobe, FiMenu, FiX, FiChevronDown, FiChevronUp } from "react-icons/fi";
 import { FaRegQuestionCircle, FaRegUserCircle } from "react-icons/fa";
@@ -9,12 +9,15 @@ import logoImg from '../assets/logo.svg';
 import { changeLanguage } from '../i18n/i18n';
 
 const Header: React.FC = () => {
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   const [isLanguageMenuOpen, setIsLanguageMenuOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isMobileLanguageMenuOpen, setIsMobileLanguageMenuOpen] = useState(false);
   const mobileMenuRef = useRef<HTMLDivElement>(null);
   const languageMenuRef = useRef<HTMLDivElement>(null);
+  const location = useLocation();
+
+  const isSignUpProcess = location.pathname.startsWith('/signup');
 
   const handleChangeLanguage = async (lng: string) => {
     await changeLanguage(lng);
@@ -95,9 +98,11 @@ const Header: React.FC = () => {
               )}
             </div>
             <button className="text-white hover:text-orange-200 text-sm flex items-center">
-              <FaRegUserCircle className="mr-1"/>{t('signin')}
-            </button>
-            <Link to="/signup" className="text-white hover:text-orange-200 text-sm">{t('register')}</Link>
+                  <FaRegUserCircle className="mr-1"/>{t('signin')}
+                </button>
+            {!isSignUpProcess && (
+                <Link to="/signup" className="text-white hover:text-orange-200 text-sm">{t('register')}</Link>
+            )}
           </div>
 
           {/* Mobile Menu Button */}
@@ -117,12 +122,14 @@ const Header: React.FC = () => {
               exit="closed"
               variants={menuVariants}
             >
-              <nav className="flex flex-col space-y-2 p-4">
-                <Link to="/" className="hover:text-orange-200 p-1" onClick={closeMobileMenu}>{t('home')}</Link>
-                <Link to="/about" className="hover:text-orange-200 p-1" onClick={closeMobileMenu}>{t('aboutUs.title')}</Link>
-                <Link to="/tasks" className="hover:text-orange-200 p-1" onClick={closeMobileMenu}>{t('taskList')}</Link>
-                <Link to="/info" className="hover:text-orange-200 p-1" onClick={closeMobileMenu}>{t('informationHub')}</Link>
-              </nav>
+              {!isSignUpProcess && (
+                <nav className="flex flex-col space-y-2 p-4">
+                  <Link to="/" className="hover:text-orange-200 p-1" onClick={closeMobileMenu}>{t('home')}</Link>
+                  <Link to="/about" className="hover:text-orange-200 p-1" onClick={closeMobileMenu}>{t('aboutUs.title')}</Link>
+                  <Link to="/tasks" className="hover:text-orange-200 p-1" onClick={closeMobileMenu}>{t('taskList')}</Link>
+                  <Link to="/info" className="hover:text-orange-200 p-1" onClick={closeMobileMenu}>{t('informationHub')}</Link>
+                </nav>
+              )}
               <div className="flex flex-col space-y-2 p-4 border-t border-blue-600">
                 <button className="text-white hover:text-orange-200 text-sm flex items-center p-1" onClick={closeMobileMenu}>
                   <FaRegQuestionCircle className="mr-2"/>{t('help')}
@@ -145,26 +152,32 @@ const Header: React.FC = () => {
                     </div>
                   )}
                 </div>
-                <button className="text-white hover:text-orange-200 text-sm flex items-center p-1" onClick={closeMobileMenu}>
-                  <FaRegUserCircle className="mr-2"/>{t('signin')}
-                </button>
-                <button className="text-white hover:text-orange-200 text-sm flex items-center p-1" onClick={closeMobileMenu}>
-                <FaRegUserCircle className="mr-2"/>{t('register')}
-                </button>
+                {!isSignUpProcess && (
+                  <>
+                    <button className="text-white hover:text-orange-200 text-sm flex items-center p-1" onClick={closeMobileMenu}>
+                      <FaRegUserCircle className="mr-2"/>{t('signin')}
+                    </button>
+                    <Link to="/signup" className="text-white hover:text-orange-200 text-sm flex items-center p-1" onClick={closeMobileMenu}>
+                      <FaRegUserCircle className="mr-2"/>{t('register')}
+                    </Link>
+                  </>
+                )}
               </div>
             </motion.div>
           )}
         </AnimatePresence>
 
         {/* Desktop Navigation */}
-        <nav className="hidden md:flex justify-center mt-4">
-          <ul className="flex space-x-6">
-            <li><Link to="/" className="hover:text-orange-200 px-2">{t('home')}</Link></li>
-            <li><Link to="/about" className="hover:text-orange-200 px-2">{t('aboutUs.title')}</Link></li>
-            <li><Link to="/tasks" className="hover:text-orange-200 px-2">{t('taskList')}</Link></li>
-            <li><Link to="/info" className="hover:text-orange-200 px-2">{t('informationHub')}</Link></li>
-          </ul>
-        </nav>
+        {!isSignUpProcess && (
+          <nav className="hidden md:flex justify-center mt-4">
+            <ul className="flex space-x-6">
+              <li><Link to="/" className="hover:text-orange-200 px-2">{t('home')}</Link></li>
+              <li><Link to="/about" className="hover:text-orange-200 px-2">{t('aboutUs.title')}</Link></li>
+              <li><Link to="/tasks" className="hover:text-orange-200 px-2">{t('taskList')}</Link></li>
+              <li><Link to="/info" className="hover:text-orange-200 px-2">{t('informationHub')}</Link></li>
+            </ul>
+          </nav>
+        )}
       </div>
     </header>
   );
