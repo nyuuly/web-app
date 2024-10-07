@@ -4,8 +4,9 @@ import bannerImage from "../../assets/img/jp_1-min.png";
 import Testimoni from "./Testimoni";
 import Features from "./Features";
 import DesignedForYou from "./DesignedForYou";
-import SignUp from "./SignUp";
-import FrequentQuestion from "./FrequentQuestion"; // Import the new component
+import AnimatedSignUp from "./SignUp";
+import SignUp from "../../components/SignUp";
+import FrequentQuestion from "./FrequentQuestion";
 
 const Home: React.FC = () => {
   const { t } = useTranslation();
@@ -42,6 +43,8 @@ const Home: React.FC = () => {
             <Features />
           </div>
         
+          <SignUp className="my-12 rounded-lg" />
+
           <div className="flex flex-col w-full my-2" id="faq">
             <FrequentQuestion />
           </div>
@@ -49,7 +52,7 @@ const Home: React.FC = () => {
             <Testimoni />
           </div>
         </div>
-        <SignUp scrollThreshold={300} />
+        <AnimatedSignUp scrollThreshold={300} />
       </div>
     </main>
   );

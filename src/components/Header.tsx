@@ -118,16 +118,16 @@ const Header: React.FC = () => {
               variants={menuVariants}
             >
               <nav className="flex flex-col space-y-2 p-4">
-                <Link to="/" className="hover:text-orange-200" onClick={closeMobileMenu}>{t('home')}</Link>
-                <Link to="/about" className="hover:text-orange-200" onClick={closeMobileMenu}>{t('aboutUs')}</Link>
-                <Link to="/tasks" className="hover:text-orange-200" onClick={closeMobileMenu}>{t('taskList')}</Link>
-                <Link to="/info" className="hover:text-orange-200" onClick={closeMobileMenu}>{t('informationHub')}</Link>
+                <Link to="/" className="hover:text-orange-200 p-1" onClick={closeMobileMenu}>{t('home')}</Link>
+                <Link to="/about" className="hover:text-orange-200 p-1" onClick={closeMobileMenu}>{t('aboutUs')}</Link>
+                <Link to="/tasks" className="hover:text-orange-200 p-1" onClick={closeMobileMenu}>{t('taskList')}</Link>
+                <Link to="/info" className="hover:text-orange-200 p-1" onClick={closeMobileMenu}>{t('informationHub')}</Link>
               </nav>
               <div className="flex flex-col space-y-2 p-4 border-t border-blue-600">
-                <button className="text-white hover:text-orange-200 text-sm flex items-center" onClick={closeMobileMenu}>
+                <button className="text-white hover:text-orange-200 text-sm flex items-center p-1" onClick={closeMobileMenu}>
                   <FaRegQuestionCircle className="mr-2"/>{t('help')}
                 </button>
-                <div>
+                <div className="p-1">
                   <button 
                     className="text-white hover:text-orange-200 text-sm flex items-center justify-between w-full"
                     onClick={() => setIsMobileLanguageMenuOpen(!isMobileLanguageMenuOpen)}
@@ -145,10 +145,10 @@ const Header: React.FC = () => {
                     </div>
                   )}
                 </div>
-                <button className="text-white hover:text-orange-200 text-sm flex items-center" onClick={closeMobileMenu}>
+                <button className="text-white hover:text-orange-200 text-sm flex items-center p-1" onClick={closeMobileMenu}>
                   <FaRegUserCircle className="mr-2"/>{t('signin')}
                 </button>
-                <button className="text-white hover:text-orange-200 text-sm flex items-center" onClick={closeMobileMenu}>
+                <button className="text-white hover:text-orange-200 text-sm flex items-center p-1" onClick={closeMobileMenu}>
                 <FaRegUserCircle className="mr-2"/>{t('register')}
                 </button>
               </div>
