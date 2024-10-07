@@ -78,7 +78,7 @@ const Features: React.FC = () => {
           </button>
         ))}
       </div>
-      <div className="content-container p-6 bg-white rounded-lg text-black">
+      <div className="content-container md:p-6 bg-white rounded-lg text-black">
         {tabs.find((tab) => tab.name === activeTab)?.content}
       </div>
     </div>
