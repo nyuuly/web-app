@@ -1,6 +1,6 @@
 "use client";
 import React, { useState, useRef, useEffect } from "react";
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { FiGlobe, FiMenu, FiX, FiChevronDown, FiChevronUp } from "react-icons/fi";
 import { FaRegQuestionCircle, FaRegUserCircle } from "react-icons/fa";
@@ -9,12 +9,13 @@ import logoImg from '../assets/logo.svg';
 import { changeLanguage } from '../i18n/i18n';
 
 const Header: React.FC = () => {
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   const [isLanguageMenuOpen, setIsLanguageMenuOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isMobileLanguageMenuOpen, setIsMobileLanguageMenuOpen] = useState(false);
   const mobileMenuRef = useRef<HTMLDivElement>(null);
   const languageMenuRef = useRef<HTMLDivElement>(null);
+  const location = useLocation();
 
   const handleChangeLanguage = async (lng: string) => {
     await changeLanguage(lng);
@@ -65,6 +66,8 @@ const Header: React.FC = () => {
       }
     }
   };
+
+  const isActive = (path: string) => location.pathname === path;
 
   return (
     <header className="bg-blue-700 text-white pt-4 pb-2 px-4 relative">
@@ -118,10 +121,10 @@ const Header: React.FC = () => {
               variants={menuVariants}
             >
               <nav className="flex flex-col space-y-2 p-4">
-                <Link to="/" className="hover:text-orange-200 p-1" onClick={closeMobileMenu}>{t('home')}</Link>
-                <Link to="/about" className="hover:text-orange-200 p-1" onClick={closeMobileMenu}>{t('aboutUs.title')}</Link>
-                <Link to="/tasks" className="hover:text-orange-200 p-1" onClick={closeMobileMenu}>{t('taskList')}</Link>
-                <Link to="/info" className="hover:text-orange-200 p-1" onClick={closeMobileMenu}>{t('informationHub')}</Link>
+                <Link to="/" className={`hover:text-orange-200 p-1 ${isActive('/') ? 'border-b-2 border-orange-400 text-orange-400' : ''}`} onClick={closeMobileMenu}>{t('home')}</Link>
+                <Link to="/about" className={`hover:text-orange-200 p-1 ${isActive('/about') ? 'border-b-2 border-orange-400 text-orange-400' : ''}`} onClick={closeMobileMenu}>{t('aboutUs.title')}</Link>
+                <Link to="/tasks" className={`hover:text-orange-200 p-1 ${isActive('/tasks') ? 'border-b-2 border-orange-400 text-orange-400' : ''}`} onClick={closeMobileMenu}>{t('taskList')}</Link>
+                <Link to="/info" className={`hover:text-orange-200 p-1 ${isActive('/info') ? 'border-b-2 border-orange-400 text-orange-400' : ''}`} onClick={closeMobileMenu}>{t('informationHub')}</Link>
               </nav>
               <div className="flex flex-col space-y-2 p-4 border-t border-blue-600">
                 <button className="text-white hover:text-orange-200 text-sm flex items-center p-1" onClick={closeMobileMenu}>
@@ -159,10 +162,10 @@ const Header: React.FC = () => {
         {/* Desktop Navigation */}
         <nav className="hidden md:flex justify-center mt-4">
           <ul className="flex space-x-6">
-            <li><Link to="/" className="hover:text-orange-200 px-2">{t('home')}</Link></li>
-            <li><Link to="/about" className="hover:text-orange-200 px-2">{t('aboutUs.title')}</Link></li>
-            <li><Link to="/tasks" className="hover:text-orange-200 px-2">{t('taskList')}</Link></li>
-            <li><Link to="/info" className="hover:text-orange-200 px-2">{t('informationHub')}</Link></li>
+            <li><Link to="/" className={`hover:text-orange-200 px-2 py-1 ${isActive('/') ? 'border-b-2 border-orange-400 text-orange-400' : ''}`}>{t('home')}</Link></li>
+            <li><Link to="/about" className={`hover:text-orange-200 px-2 py-1 ${isActive('/about') ? 'border-b-2 border-orange-400 text-orange-400' : ''}`}>{t('aboutUs.title')}</Link></li>
+            <li><Link to="/tasks" className={`hover:text-orange-200 px-2 py-1 ${isActive('/tasks') ? 'border-b-2 border-orange-400 text-orange-400' : ''}`}>{t('taskList')}</Link></li>
+            <li><Link to="/info" className={`hover:text-orange-200 px-2 py-1 ${isActive('/info') ? 'border-b-2 border-orange-400 text-orange-400' : ''}`}>{t('informationHub')}</Link></li>
           </ul>
         </nav>
       </div>
