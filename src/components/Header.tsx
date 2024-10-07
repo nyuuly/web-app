@@ -97,7 +97,7 @@ const Header: React.FC = () => {
             <button className="text-white hover:text-orange-200 text-sm flex items-center">
               <FaRegUserCircle className="mr-1"/>{t('signin')}
             </button>
-            <button className="text-white hover:text-orange-200 text-sm">{t('register')}</button>
+            <Link to="/signup" className="text-white hover:text-orange-200 text-sm">{t('register')}</Link>
           </div>
 
           {/* Mobile Menu Button */}

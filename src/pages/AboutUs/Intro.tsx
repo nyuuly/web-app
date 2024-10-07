@@ -1,5 +1,4 @@
 import React from 'react';
-import ScrollAnimationWrapper from '../../components/misc/ScrollAnimationWrapper';
 import { useTranslation } from 'react-i18next';
 
 const Intro: React.FC = () => {
