@@ -9,6 +9,30 @@
     "intro": {
       "title": "We are Nyuuly",
       "description": "At Nyuuly, we believe that a smooth transition to Japan unlocks happiness and opportunity. Our mission is to provide the tools and support you need for an effortless move. Join us in creating a fulfilling life in Japan!"
+    },
+    "mission": {
+      "title": "Our Mission",
+      "description": "Our mission is to empower individuals with the tools and knowledge they need for a seamless transition to life in Japan. We strive to simplify the complexities of relocation, ensuring that every step of your journey is supported and stress-free.",
+      "imagePlaceholder": "Mission Image"
+    },
+    "values": {
+      "title": "Our Values",
+      "value1": {
+        "title": "Empowerment",
+        "description": "We empower individuals to take control of their relocation journey."
+      },
+      "value2": {
+        "title": "Simplicity",
+        "description": "We simplify complex processes to make relocation stress-free."
+      },
+      "value3": {
+        "title": "Support",
+        "description": "We provide comprehensive support at every step of the way."
+      },
+      "value4": {
+        "title": "Innovation",
+        "description": "We continuously innovate to improve the relocation experience."
+      }
     }
   },
   "taskList": "Task List",
