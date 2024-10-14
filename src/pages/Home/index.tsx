@@ -45,7 +45,7 @@ const Home: React.FC = () => {
         </div>
       </FullwBgWrapper>
       <FullwBgWrapper>
-        <div className="container mx-auto p-8 rounded-lg text-white text-4xl mb-12" style={{background: 'linear-gradient(202.89deg, #E3FC3E 20.42%, #161C6D 120.97%)'}}>
+        <div className="container mx-auto p-8 rounded-lg text-white text-4xl my-12" style={{background: 'linear-gradient(202.89deg, #E3FC3E 20.42%, #161C6D 120.97%)'}}>
         {/* <SignUp className="my-12 rounded-lg" /> */}
         To be updated: Newsletter registration?
         </div>

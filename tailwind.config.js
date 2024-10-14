@@ -49,7 +49,7 @@ export default {
         500: "#fff",
       },
       gray: {
-        100: "#FAFAFA",
+        100: "#F0F0F0",
         200: "#E7E7E7",
         400: "#AFB5C0",
         500: "#DDDDDD",
