@@ -23,7 +23,7 @@ const SignUp: React.FC = () => {
             </div>
 
             {/* Right column with routes */}
-            <div className="w-full md:w-1/2 px-4 md:pl-12">
+            <div className="w-full md:w-1/2 px-4 md:pl-8">
               <div className="bg-white p-6 rounded-lg shadow-lg">
                 <Routes>
                   <Route index element={<EmailInput />} />
