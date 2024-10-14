@@ -17,6 +17,8 @@ const Header: React.FC = () => {
   const languageMenuRef = useRef<HTMLDivElement>(null);
   const location = useLocation();
 
+  const isSignUpProcess = location.pathname.startsWith('/signup');
+
   const handleChangeLanguage = async (lng: string) => {
     await changeLanguage(lng);
     setIsLanguageMenuOpen(false);
@@ -98,9 +100,11 @@ const Header: React.FC = () => {
               )}
             </div>
             <button className="text-white hover:text-orange-200 text-sm flex items-center">
-              <FaRegUserCircle className="mr-1"/>{t('signin')}
-            </button>
-            <button className="text-white hover:text-orange-200 text-sm">{t('register')}</button>
+                  <FaRegUserCircle className="mr-1"/>{t('signin')}
+                </button>
+            {!isSignUpProcess && (
+                <Link to="/signup" className="text-white hover:text-orange-200 text-sm">{t('register')}</Link>
+            )}
           </div>
 
           {/* Mobile Menu Button */}
@@ -120,12 +124,14 @@ const Header: React.FC = () => {
               exit="closed"
               variants={menuVariants}
             >
-              <nav className="flex flex-col space-y-2 p-4">
-                <Link to="/" className={`hover:text-orange-200 p-1 ${isActive('/') ? 'border-b-2 border-orange-400 text-orange-400' : ''}`} onClick={closeMobileMenu}>{t('home')}</Link>
-                <Link to="/about" className={`hover:text-orange-200 p-1 ${isActive('/about') ? 'border-b-2 border-orange-400 text-orange-400' : ''}`} onClick={closeMobileMenu}>{t('aboutUs.title')}</Link>
-                <Link to="/tasks" className={`hover:text-orange-200 p-1 ${isActive('/tasks') ? 'border-b-2 border-orange-400 text-orange-400' : ''}`} onClick={closeMobileMenu}>{t('taskList')}</Link>
-                <Link to="/info" className={`hover:text-orange-200 p-1 ${isActive('/info') ? 'border-b-2 border-orange-400 text-orange-400' : ''}`} onClick={closeMobileMenu}>{t('informationHub')}</Link>
-              </nav>
+              {!isSignUpProcess && (
+                <nav className="flex flex-col space-y-2 p-4">
+                  <Link to="/" className="hover:text-orange-200 p-1" onClick={closeMobileMenu}>{t('home')}</Link>
+                  <Link to="/about" className="hover:text-orange-200 p-1" onClick={closeMobileMenu}>{t('aboutUs.title')}</Link>
+                  <Link to="/tasks" className="hover:text-orange-200 p-1" onClick={closeMobileMenu}>{t('taskList')}</Link>
+                  <Link to="/info" className="hover:text-orange-200 p-1" onClick={closeMobileMenu}>{t('informationHub')}</Link>
+                </nav>
+              )}
               <div className="flex flex-col space-y-2 p-4 border-t border-blue-600">
                 <button className="text-white hover:text-orange-200 text-sm flex items-center p-1" onClick={closeMobileMenu}>
                   <FaRegQuestionCircle className="mr-2"/>{t('help')}
@@ -148,26 +154,32 @@ const Header: React.FC = () => {
                     </div>
                   )}
                 </div>
-                <button className="text-white hover:text-orange-200 text-sm flex items-center p-1" onClick={closeMobileMenu}>
-                  <FaRegUserCircle className="mr-2"/>{t('signin')}
-                </button>
-                <button className="text-white hover:text-orange-200 text-sm flex items-center p-1" onClick={closeMobileMenu}>
-                <FaRegUserCircle className="mr-2"/>{t('register')}
-                </button>
+                {!isSignUpProcess && (
+                  <>
+                    <button className="text-white hover:text-orange-200 text-sm flex items-center p-1" onClick={closeMobileMenu}>
+                      <FaRegUserCircle className="mr-2"/>{t('signin')}
+                    </button>
+                    <Link to="/signup" className="text-white hover:text-orange-200 text-sm flex items-center p-1" onClick={closeMobileMenu}>
+                      <FaRegUserCircle className="mr-2"/>{t('register')}
+                    </Link>
+                  </>
+                )}
               </div>
             </motion.div>
           )}
         </AnimatePresence>
 
         {/* Desktop Navigation */}
-        <nav className="hidden md:flex justify-center mt-4">
-          <ul className="flex space-x-6">
-            <li><Link to="/" className={`hover:text-orange-200 px-2 py-1 ${isActive('/') ? 'border-b-2 border-orange-400 text-orange-400' : ''}`}>{t('home')}</Link></li>
-            <li><Link to="/about" className={`hover:text-orange-200 px-2 py-1 ${isActive('/about') ? 'border-b-2 border-orange-400 text-orange-400' : ''}`}>{t('aboutUs.title')}</Link></li>
-            <li><Link to="/tasks" className={`hover:text-orange-200 px-2 py-1 ${isActive('/tasks') ? 'border-b-2 border-orange-400 text-orange-400' : ''}`}>{t('taskList')}</Link></li>
-            <li><Link to="/info" className={`hover:text-orange-200 px-2 py-1 ${isActive('/info') ? 'border-b-2 border-orange-400 text-orange-400' : ''}`}>{t('informationHub')}</Link></li>
-          </ul>
-        </nav>
+        {!isSignUpProcess && (
+          <nav className="hidden md:flex justify-center mt-4">
+            <ul className="flex space-x-6">
+              <li><Link to="/" className="hover:text-orange-200 px-2">{t('home')}</Link></li>
+              <li><Link to="/about" className="hover:text-orange-200 px-2">{t('aboutUs.title')}</Link></li>
+              <li><Link to="/tasks" className="hover:text-orange-200 px-2">{t('taskList')}</Link></li>
+              <li><Link to="/info" className="hover:text-orange-200 px-2">{t('informationHub')}</Link></li>
+            </ul>
+          </nav>
+        )}
       </div>
     </header>
   );
