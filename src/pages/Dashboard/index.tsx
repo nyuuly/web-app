@@ -1,11 +1,18 @@
 import React from 'react';
+import FullwBgWrapper from '../../components/misc/FullwBgWrapper';
 
 const Dashboard: React.FC = () => {
   return (
-    <div className="container mx-auto px-4 py-8 text-black">
-      <h1 className="text-2xl font-bold mb-4">Dashboard</h1>
-      <p>Welcome to your dashboard!</p>
-    </div>
+    <main>
+      <FullwBgWrapper
+        bgClassName="pb-24"
+        style={{
+          background: 'linear-gradient(180deg, #051C58 0%, #3D4EDD 51%, #FFA555 100%)',
+        }}
+      >
+        <div className="container mx-auto px-4 py-12"></div>
+        </FullwBgWrapper>
+    </main>
   );
 };
 
