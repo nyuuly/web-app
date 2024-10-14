@@ -1,14 +1,18 @@
 import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import { FcGoogle } from "react-icons/fc"; // Import Google icon
+import { FcGoogle } from "react-icons/fc";
+import { useAuth } from '../../contexts/AuthContext';
 
 const EmailInput: React.FC = () => {
+  const { setIsLoggedIn } = useAuth();
+
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
 
   const handleNext = () => {
-    // Here you can add email validation logic if needed
-    navigate("/signup/verification");
+    localStorage.setItem('isLoggedIn', 'true');
+    setIsLoggedIn(true);
+    navigate("/dashboard");
   };
 
   const handleGoogleSignIn = () => {
@@ -18,7 +22,7 @@ const EmailInput: React.FC = () => {
 
   return (
     <div className="container mx-auto px-4 py-4 text-black">
-      <h1 className="text-4xl font-bold mb-4 font-manuale">Register</h1>
+      <h1 className="text-4xl font-bold mb-4 font-manuale">Sign In</h1>
       <label>Email Address</label>
       <input
         type="email"
@@ -31,7 +35,7 @@ const EmailInput: React.FC = () => {
         onClick={handleNext}
         className="bg-orange-400 text-black w-full font-bold px-4 py-2 rounded hover:bg-orange-700 transition-colors"
       >
-        Register
+        Sign in
       </button>
 
       {/* Divider with OR */}
@@ -51,12 +55,12 @@ const EmailInput: React.FC = () => {
 
       {/* Login option */}
       <div className="text-center mt-12">
-        Already have an account?
+        Don't have an account?
         <Link
-          to="/signin"
+          to="/signup"
           className="text-blue-600 font-semibold ml-1 hover:underline"
         >
-          Sign in
+          Register Now
         </Link>
       </div>
 
