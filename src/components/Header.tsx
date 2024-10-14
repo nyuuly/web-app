@@ -1,23 +1,33 @@
 "use client";
 import React, { useState, useRef, useEffect } from "react";
-import { Link, useLocation } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
-import { FiGlobe, FiMenu, FiX, FiChevronDown, FiChevronUp } from "react-icons/fi";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
+import {
+  FiGlobe,
+  FiMenu,
+  FiX,
+  FiChevronDown,
+  FiChevronUp,
+} from "react-icons/fi";
 import { FaRegQuestionCircle, FaRegUserCircle } from "react-icons/fa";
 import { motion, AnimatePresence } from "framer-motion";
-import logoImg from '../assets/logo.svg';
-import { changeLanguage } from '../i18n/i18n';
+import logoImg from "../assets/logo.svg";
+import { changeLanguage } from "../i18n/i18n";
+import { useAuth } from "../contexts/AuthContext";
 
 const Header: React.FC = () => {
   const { t } = useTranslation();
+  const { isLoggedIn, setIsLoggedIn } = useAuth();
+  const navigate = useNavigate();
   const [isLanguageMenuOpen, setIsLanguageMenuOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [isMobileLanguageMenuOpen, setIsMobileLanguageMenuOpen] = useState(false);
+  const [isMobileLanguageMenuOpen, setIsMobileLanguageMenuOpen] =
+    useState(false);
   const mobileMenuRef = useRef<HTMLDivElement>(null);
   const languageMenuRef = useRef<HTMLDivElement>(null);
   const location = useLocation();
 
-  const isSignUpProcess = location.pathname.startsWith('/signup');
+  const isSignUpProcess = location.pathname.startsWith("/signup");
 
   const handleChangeLanguage = async (lng: string) => {
     await changeLanguage(lng);
@@ -34,19 +44,31 @@ const Header: React.FC = () => {
     setIsMobileLanguageMenuOpen(false);
   };
 
+  const handleLogout = () => {
+    localStorage.setItem('isLoggedIn', 'false');
+    setIsLoggedIn(false);
+    navigate('/');
+  };
+
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (mobileMenuRef.current && !mobileMenuRef.current.contains(event.target as Node)) {
+      if (
+        mobileMenuRef.current &&
+        !mobileMenuRef.current.contains(event.target as Node)
+      ) {
         closeMobileMenu();
       }
-      if (languageMenuRef.current && !languageMenuRef.current.contains(event.target as Node)) {
+      if (
+        languageMenuRef.current &&
+        !languageMenuRef.current.contains(event.target as Node)
+      ) {
         setIsLanguageMenuOpen(false);
       }
     };
 
-    document.addEventListener('mousedown', handleClickOutside);
+    document.addEventListener("mousedown", handleClickOutside);
     return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
 
@@ -56,17 +78,17 @@ const Header: React.FC = () => {
       y: "-100%",
       transition: {
         duration: 0.3,
-        ease: "easeInOut"
-      }
+        ease: "easeInOut",
+      },
     },
     open: {
       opacity: 1,
       y: 0,
       transition: {
         duration: 0.3,
-        ease: "easeInOut"
-      }
-    }
+        ease: "easeInOut",
+      },
+    },
   };
 
   const isActive = (path: string) => location.pathname === path;
@@ -78,32 +100,70 @@ const Header: React.FC = () => {
           <Link to="/" className="text-2xl font-bold">
             <img src={logoImg} alt="Logo" className="h-8 w-auto" />
           </Link>
-          
+
           {/* Desktop Menu */}
           <div className="hidden md:flex items-center space-x-4 bg-blue-600 px-4 py-2 rounded-full">
             <button className="text-white hover:text-orange-200 text-sm flex items-center">
-              <FaRegQuestionCircle className="mr-1"/>{t('help')}
+              <FaRegQuestionCircle className="mr-1" />
+              {t("help")}
             </button>
             <div className="relative" ref={languageMenuRef}>
-              <button 
+              <button
                 className="text-white hover:text-orange-200 text-sm flex items-center"
                 onClick={() => setIsLanguageMenuOpen(!isLanguageMenuOpen)}
               >
-                <FiGlobe className="mr-1" />{t('language')}
+                <FiGlobe className="mr-1" />
+                {t("language")}
               </button>
               {isLanguageMenuOpen && (
                 <div className="absolute right-0 mt-2 w-48 bg-blue-100 shadow-lg">
-                  <button onClick={() => handleChangeLanguage('en')} className="block px-4 py-2 text-sm text-black hover:bg-blue-200 w-full text-left">English</button>
-                  <button onClick={() => handleChangeLanguage('vi')} className="block px-4 py-2 text-sm text-black hover:bg-blue-200 w-full text-left">Tiếng Việt</button>
-                  <button onClick={() => handleChangeLanguage('ja')} className="block px-4 py-2 text-sm text-black hover:bg-blue-200 w-full text-left">日本語</button>
+                  <button
+                    onClick={() => handleChangeLanguage("en")}
+                    className="block px-4 py-2 text-sm text-black hover:bg-blue-200 w-full text-left"
+                  >
+                    English
+                  </button>
+                  <button
+                    onClick={() => handleChangeLanguage("vi")}
+                    className="block px-4 py-2 text-sm text-black hover:bg-blue-200 w-full text-left"
+                  >
+                    Tiếng Việt
+                  </button>
+                  <button
+                    onClick={() => handleChangeLanguage("ja")}
+                    className="block px-4 py-2 text-sm text-black hover:bg-blue-200 w-full text-left"
+                  >
+                    日本語
+                  </button>
                 </div>
               )}
             </div>
-            <button className="text-white hover:text-orange-200 text-sm flex items-center">
-                  <FaRegUserCircle className="mr-1"/>{t('signin')}
+            {isLoggedIn ? (
+              <>
+                <button className="text-white hover:text-orange-200 text-sm flex items-center">
+                  <FaRegUserCircle className="mr-1" />
+                  Profile
                 </button>
-            {!isSignUpProcess && (
-                <Link to="/signup" className="text-white hover:text-orange-200 text-sm">{t('register')}</Link>
+                <button 
+                  className="text-white hover:text-orange-200 text-sm flex items-center"
+                  onClick={handleLogout}
+                >
+                  Logout
+                </button>
+              </>
+            ) : (
+              <>
+                <button className="text-white hover:text-orange-200 text-sm flex items-center">
+                  <FaRegUserCircle className="mr-1" />
+                  {t("signin")}
+                </button>
+                <Link
+                  to="/signup"
+                  className="text-white hover:text-orange-200 text-sm"
+                >
+                  {t("register")}
+                </Link>
+              </>
             )}
           </div>
 
@@ -126,41 +186,120 @@ const Header: React.FC = () => {
             >
               {!isSignUpProcess && (
                 <nav className="flex flex-col space-y-2 p-4">
-                  <Link to="/" className="hover:text-orange-200 p-1" onClick={closeMobileMenu}>{t('home')}</Link>
-                  <Link to="/about" className="hover:text-orange-200 p-1" onClick={closeMobileMenu}>{t('aboutUs.title')}</Link>
-                  <Link to="/tasks" className="hover:text-orange-200 p-1" onClick={closeMobileMenu}>{t('taskList')}</Link>
-                  <Link to="/info" className="hover:text-orange-200 p-1" onClick={closeMobileMenu}>{t('informationHub')}</Link>
+                  <Link
+                    to="/"
+                    className="hover:text-orange-200 p-1"
+                    onClick={closeMobileMenu}
+                  >
+                    {t("home")}
+                  </Link>
+                  <Link
+                    to="/about"
+                    className="hover:text-orange-200 p-1"
+                    onClick={closeMobileMenu}
+                  >
+                    {t("aboutUs.title")}
+                  </Link>
+                  <Link
+                    to="/tasks"
+                    className="hover:text-orange-200 p-1"
+                    onClick={closeMobileMenu}
+                  >
+                    {t("taskList")}
+                  </Link>
+                  <Link
+                    to="/info"
+                    className="hover:text-orange-200 p-1"
+                    onClick={closeMobileMenu}
+                  >
+                    {t("informationHub")}
+                  </Link>
                 </nav>
               )}
               <div className="flex flex-col space-y-2 p-4 border-t border-blue-600">
-                <button className="text-white hover:text-orange-200 text-sm flex items-center p-1" onClick={closeMobileMenu}>
-                  <FaRegQuestionCircle className="mr-2"/>{t('help')}
+                <button
+                  className="text-white hover:text-orange-200 text-sm flex items-center p-1"
+                  onClick={closeMobileMenu}
+                >
+                  <FaRegQuestionCircle className="mr-2" />
+                  {t("help")}
                 </button>
                 <div className="p-1">
-                  <button 
+                  <button
                     className="text-white hover:text-orange-200 text-sm flex items-center justify-between w-full"
-                    onClick={() => setIsMobileLanguageMenuOpen(!isMobileLanguageMenuOpen)}
+                    onClick={() =>
+                      setIsMobileLanguageMenuOpen(!isMobileLanguageMenuOpen)
+                    }
                   >
                     <span className="flex items-center">
-                      <FiGlobe className="mr-2" />{t('language')}
+                      <FiGlobe className="mr-2" />
+                      {t("language")}
                     </span>
-                    {isMobileLanguageMenuOpen ? <FiChevronUp /> : <FiChevronDown />}
+                    {isMobileLanguageMenuOpen ? (
+                      <FiChevronUp />
+                    ) : (
+                      <FiChevronDown />
+                    )}
                   </button>
                   {isMobileLanguageMenuOpen && (
                     <div className="ml-6 mt-2 space-y-2">
-                      <button onClick={() => handleChangeLanguage('en')} className="block text-sm text-white hover:text-orange-200 w-full text-left">English</button>
-                      <button onClick={() => handleChangeLanguage('vi')} className="block text-sm text-white hover:text-orange-200 w-full text-left">Tiếng Việt</button>
-                      <button onClick={() => handleChangeLanguage('ja')} className="block text-sm text-white hover:text-orange-200 w-full text-left">日本語</button>
+                      <button
+                        onClick={() => handleChangeLanguage("en")}
+                        className="block text-sm text-white hover:text-orange-200 w-full text-left"
+                      >
+                        English
+                      </button>
+                      <button
+                        onClick={() => handleChangeLanguage("vi")}
+                        className="block text-sm text-white hover:text-orange-200 w-full text-left"
+                      >
+                        Tiếng Việt
+                      </button>
+                      <button
+                        onClick={() => handleChangeLanguage("ja")}
+                        className="block text-sm text-white hover:text-orange-200 w-full text-left"
+                      >
+                        日本語
+                      </button>
                     </div>
                   )}
                 </div>
-                {!isSignUpProcess && (
+                {isLoggedIn ? (
                   <>
-                    <button className="text-white hover:text-orange-200 text-sm flex items-center p-1" onClick={closeMobileMenu}>
-                      <FaRegUserCircle className="mr-2"/>{t('signin')}
+                    <button
+                      className="text-white hover:text-orange-200 text-sm flex items-center p-1"
+                      onClick={closeMobileMenu}
+                    >
+                      <FaRegUserCircle className="mr-2" />
+                      Profile
                     </button>
-                    <Link to="/signup" className="text-white hover:text-orange-200 text-sm flex items-center p-1" onClick={closeMobileMenu}>
-                      <FaRegUserCircle className="mr-2"/>{t('register')}
+                    <button
+                      className="text-white hover:text-orange-200 text-sm flex items-center p-1"
+                      onClick={() => {
+                        handleLogout();
+                        closeMobileMenu();
+                      }}
+                    >
+                      <FaRegUserCircle className="mr-2" />
+                      Logout
+                    </button>
+                  </>
+                ) : (
+                  <>
+                    <button
+                      className="text-white hover:text-orange-200 text-sm flex items-center p-1"
+                      onClick={closeMobileMenu}
+                    >
+                      <FaRegUserCircle className="mr-2" />
+                      {t("signin")}
+                    </button>
+                    <Link
+                      to="/signup"
+                      className="text-white hover:text-orange-200 text-sm flex items-center p-1"
+                      onClick={closeMobileMenu}
+                    >
+                      <FaRegUserCircle className="mr-2" />
+                      {t("register")}
                     </Link>
                   </>
                 )}
@@ -168,15 +307,31 @@ const Header: React.FC = () => {
             </motion.div>
           )}
         </AnimatePresence>
-
+        {isLoggedIn && (<div className="text-white">hello</div>)}
         {/* Desktop Navigation */}
         {!isSignUpProcess && (
           <nav className="hidden md:flex justify-center mt-4">
             <ul className="flex space-x-6">
-              <li><Link to="/" className="hover:text-orange-200 px-2">{t('home')}</Link></li>
-              <li><Link to="/about" className="hover:text-orange-200 px-2">{t('aboutUs.title')}</Link></li>
-              <li><Link to="/tasks" className="hover:text-orange-200 px-2">{t('taskList')}</Link></li>
-              <li><Link to="/info" className="hover:text-orange-200 px-2">{t('informationHub')}</Link></li>
+              <li>
+                <Link to="/" className="hover:text-orange-200 px-2">
+                  {t("home")}
+                </Link>
+              </li>
+              <li>
+                <Link to="/about" className="hover:text-orange-200 px-2">
+                  {t("aboutUs.title")}
+                </Link>
+              </li>
+              <li>
+                <Link to="/tasks" className="hover:text-orange-200 px-2">
+                  {t("taskList")}
+                </Link>
+              </li>
+              <li>
+                <Link to="/info" className="hover:text-orange-200 px-2">
+                  {t("informationHub")}
+                </Link>
+              </li>
             </ul>
           </nav>
         )}

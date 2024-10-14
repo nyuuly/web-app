@@ -2,16 +2,19 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { FiArrowLeft } from "react-icons/fi";
 import OtpInput from "react-otp-input";
+import { useAuth } from '../../contexts/AuthContext';
 
 const VerificationCode: React.FC = () => {
   const navigate = useNavigate();
   const [otp, setOtp] = useState("");
+  const { setIsLoggedIn } = useAuth();
 
   const handleNext = () => {
     if (otp.length === 6) {
       // Here you can add verification logic
       console.log("Verification code:", otp);
-      //   navigate('/signup/questions');
+      localStorage.setItem('isLoggedIn', 'true');
+      setIsLoggedIn(true);
       navigate("/dashboard");
     } else {
       alert("Please enter a valid 6-digit code");

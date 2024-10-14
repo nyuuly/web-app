@@ -7,13 +7,14 @@ import InformationHub from "./pages/InformationHub";
 import Home from "./pages/Home";
 import AboutUs from "./pages/AboutUs";
 import Dashboard from "./pages/Dashboard";
+import { AuthProvider } from './contexts/AuthContext';
 
 // Lazy load all signup-related components
 const SignUpPages = lazy(() => import("./pages/SignUp"));
 
 function App() {
   return (
-    <>
+    <AuthProvider>
       <Header />
       <Suspense fallback={<div>Loading...</div>}>
         <Routes>
@@ -26,7 +27,7 @@ function App() {
         </Routes>
       </Suspense>
       <Footer />
-    </>
+    </AuthProvider>
   )
 }
 
