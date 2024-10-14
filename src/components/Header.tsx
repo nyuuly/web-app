@@ -78,7 +78,7 @@ const Header: React.FC = () => {
           </Link>
           
           {/* Desktop Menu */}
-          <div className="hidden md:flex items-center space-x-4 bg-black px-4 py-2 rounded-full">
+          <div className="hidden md:flex items-center space-x-4 bg-blue-600 px-4 py-2 rounded-full">
             <button className="text-white hover:text-orange-200 text-sm flex items-center">
               <FaRegQuestionCircle className="mr-1"/>{t('help')}
             </button>

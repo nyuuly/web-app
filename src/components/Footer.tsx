@@ -4,7 +4,7 @@ import logoImg from '../assets/logo.svg';
 
 const Footer: React.FC = () => {
   return (
-    <footer className="bg-blue-700 text-white py-8 pb-24">
+    <footer className="bg-gray-700 text-white py-8 pb-24">
       <div className="container mx-auto px-4">
         {/* Top row */}
         <div className="flex flex-wrap justify-between mb-8">

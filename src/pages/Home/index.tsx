@@ -1,59 +1,56 @@
 import React from "react";
-import { useTranslation } from 'react-i18next';
-import bannerImage from "../../assets/img/jp_1-min.png";
+import { useTranslation } from "react-i18next";
 import Testimoni from "./Testimoni";
 import Features from "./Features";
 import DesignedForYou from "./DesignedForYou";
 import AnimatedSignUp from "./SignUp";
 import SignUp from "../../components/SignUp";
 import FrequentQuestion from "./FrequentQuestion";
+import FullwBgWrapper from "../../components/misc/FullwBgWrapper";
 
 const Home: React.FC = () => {
   const { t } = useTranslation();
 
   return (
     <main>
-      <div className="bg-blue-100 py-12 pb-24">
-        <div className="container mx-auto px-4">
+      <FullwBgWrapper
+        bgClassName="pb-24"
+        style={{
+          background: "linear-gradient(to bottom, #051C58, #3D4EDD, #FFA555)",
+        }}
+      >
+        <div className="container mx-auto px-4 py-12">
           <div className="flex flex-col md:flex-row items-center">
-            {/* Left-hand side: Text content */}
-            <div className="md:w-1/2 md:pr-8 mb-8 md:mb-0 text-black px-4">
-              <h1 className="text-6xl font-bold mb-6">{t('moveWithConfidence')}</h1>
-              
+            <div className="mb-8 md:mb-0 text-white px-4">
+              <h1 className="text-6xl font-bold mb-6">
+                {t("moveWithConfidence")}
+              </h1>
               <p className="text-xl font-semibold mb-4">
-                {t('embarkOnNewAdventure')}
+                {t("embarkOnNewAdventure")}
               </p>
             </div>
-            <div className="md:w-1/2">
-              <img
-                src={bannerImage}
-                alt={t('platformPreview')}
-                className="w-full h-auto rounded-lg shadow-lg"
-              />
-            </div>
           </div>
         </div>
-      </div>
-
-      <div className="container mx-auto px-4 pb-24">
-        <div className="-mt-24"> {/* Added negative margin-top here */}
-          <DesignedForYou />
-
-          <div className="flex flex-col w-full my-2" id="features">
+      </FullwBgWrapper>
+      <FullwBgWrapper>
+        <div className="container mx-auto">
+          <div className="flex flex-col w-full" id="features">
             <Features />
           </div>
-        
-          <SignUp className="my-12 rounded-lg" />
-
-          <div className="flex flex-col w-full my-2" id="faq">
-            <FrequentQuestion />
-          </div>
-            <div className="flex flex-col w-full my-2" id="testimoni">
-            <Testimoni />
-          </div>
         </div>
-        <AnimatedSignUp scrollThreshold={300} />
-      </div>
+      </FullwBgWrapper>
+      <FullwBgWrapper bgClassName="bg-gray-100">
+        <div className="container mx-auto px-4">
+          <DesignedForYou />
+        </div>
+      </FullwBgWrapper>
+      <FullwBgWrapper>
+        <div className="container mx-auto p-8 rounded-lg text-white text-4xl mb-12" style={{background: 'linear-gradient(202.89deg, #E3FC3E 20.42%, #161C6D 120.97%)'}}>
+        {/* <SignUp className="my-12 rounded-lg" /> */}
+        To be updated: Newsletter registration?
+        </div>
+      </FullwBgWrapper>
+      {/* <AnimatedSignUp scrollThreshold={300} /> */}
     </main>
   );
 };

@@ -49,10 +49,11 @@ export default {
         500: "#fff",
       },
       gray: {
-        100: "#F2F2F2",
+        100: "#FAFAFA",
         200: "#E7E7E7",
         400: "#AFB5C0",
         500: "#DDDDDD",
+        700: "#2A2A2A",
       },
       purple: {
         100: '#E6E6FA',

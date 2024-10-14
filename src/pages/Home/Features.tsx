@@ -10,7 +10,8 @@ const Features: React.FC = () => {
 
   const TaskListContent = () => (
     <div className="flex flex-col md:flex-row gap-4">
-      <div className="md:w-1/2 bg-gray-100 p-4 md:p-8 rounded-lg flex flex-col items-center justify-between">
+      To be updated here
+      {/* <div className="md:w-1/2 bg-gray-100 p-4 md:p-8 rounded-lg flex flex-col items-center justify-between">
         <img
           src={mockupImage1}
           alt={t('taskListMockup')}
@@ -45,24 +46,27 @@ const Features: React.FC = () => {
             />
           </div>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 
   const tabs = [
     { name: "taskList", content: <TaskListContent /> },
     { name: "informationHub", content: t('informationHubPlaceholder') },
-    { name: "mobileSIM", content: t('mobileSIMPlaceholder') },
+    // { name: "mobileSIM", content: t('mobileSIMPlaceholder') },
   ];
 
   return (
     <div className="features-container py-12 text-black">
-      <h2 className="text-4xl font-bold text-center mb-4 font-manuale">
+       <h2 className="font-bold text-center mb-4">
+        WHAT WE OFFER
+      </h2>
+      <h2 className="text-4xl font-bold text-center mb-4">
         {t('exploreOurServices')}
       </h2>
-      <p className="text-2xl text-center mb-12">
+      {/* <p className="text-2xl text-center mb-12">
         {t('supportingYourJourney')}
-      </p>
+      </p> */}
       <div className="flex justify-center mb-6">
         {tabs.map((tab) => (
           <button
