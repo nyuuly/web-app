@@ -1,7 +1,7 @@
 import { lazy, Suspense } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import "react-datepicker/dist/react-datepicker.css";
-import Header from "./components/Header";
+import Header from "./containers/HeaderContainer.tsx";
 import Footer from "./components/Footer";
 import TaskList from "./pages/TaskList";
 import InformationHub from "./pages/InformationHub";
