@@ -12,7 +12,7 @@ const EmailInput: React.FC = () => {
   const handleNext = () => {
     localStorage.setItem('isLoggedIn', 'true');
     setIsLoggedIn(true);
-    navigate("/dashboard");
+    navigate("/");
   };
 
   const handleGoogleSignIn = () => {

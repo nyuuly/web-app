@@ -6,18 +6,11 @@ import TaskList from "./pages/TaskList";
 import InformationHub from "./pages/InformationHub";
 import Home from "./pages/Home";
 import AboutUs from "./pages/AboutUs";
-import Dashboard from "./pages/Dashboard";
 import SignIn from "./pages/SignIn";
-import { AuthProvider, useAuth } from './contexts/AuthContext';
+import { AuthProvider } from './contexts/AuthContext';
 
 // Lazy load all signup-related components
 const SignUpPages = lazy(() => import("./pages/SignUp"));
-
-// Protected Route component
-const ProtectedRoute: React.FC<{ element: React.ReactElement }> = ({ element }) => {
-  const { isLoggedIn } = useAuth();
-  return isLoggedIn ? element : <Navigate to="/" replace />;
-};
 
 function AppRoutes() {
   return (
@@ -28,7 +21,6 @@ function AppRoutes() {
       <Route path="/about" element={<AboutUs />} />
       <Route path="/signup/*" element={<SignUpPages />} />
       <Route path="/signin" element={<SignIn />} />
-      <Route path="/dashboard" element={<ProtectedRoute element={<Dashboard />} />} />
     </Routes>
   );
 }

@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { motion, useAnimation } from 'framer-motion';
-import SignUp from '../../components/SignUp';
+import SignUp from '../../../components/SignUp';
 
 interface SignUpProps {
   scrollThreshold: number;

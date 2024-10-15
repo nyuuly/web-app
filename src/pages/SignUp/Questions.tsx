@@ -5,7 +5,7 @@ const Questions: React.FC = () => {
   const navigate = useNavigate();
 
   const handleNext = () => {
-    navigate('/dashboard');
+    navigate('/');
   };
 
   return (

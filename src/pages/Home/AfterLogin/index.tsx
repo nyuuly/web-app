@@ -1,7 +1,7 @@
 import React from 'react';
-import FullwBgWrapper from '../../components/misc/FullwBgWrapper';
+import FullwBgWrapper from '../../../components/misc/FullwBgWrapper';
 
-const Dashboard: React.FC = () => {
+const HomeAfterLogin: React.FC = () => {
   return (
     <main>
       <FullwBgWrapper
@@ -10,10 +10,10 @@ const Dashboard: React.FC = () => {
         //   background: 'linear-gradient(180deg, #051C58 0%, #3D4EDD 51%, #FFA555 100%)',
         // }}
       >
-        <div className="container mx-auto px-4 py-12"></div>
+        <div className="container mx-auto px-4 py-12 text-white">TEST after login</div>
         </FullwBgWrapper>
     </main>
   );
 };
 
-export default Dashboard;
+export default HomeAfterLogin;

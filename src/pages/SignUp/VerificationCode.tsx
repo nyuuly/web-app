@@ -15,7 +15,7 @@ const VerificationCode: React.FC = () => {
       console.log("Verification code:", otp);
       localStorage.setItem('isLoggedIn', 'true');
       setIsLoggedIn(true);
-      navigate("/dashboard");
+      navigate("/");
     } else {
       alert("Please enter a valid 6-digit code");
     }
