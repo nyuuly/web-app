@@ -105,9 +105,14 @@ const Header: React.FC = () => {
 
   const isActive = (path: string) => location.pathname === path;
 
+  const activeClass = isLoggedIn
+    ? "text-blue-700 border-b-4 border-blue-700 font-bold"
+    : "text-orange-400 border-b-4 border-orange-400 font-bold";
+  const inactiveClass = isLoggedIn? "hover:text-gray-700" : "hover:text-orange-200";
+
   return (
     <header
-      className="bg-blue-700 text-white pt-4 pb-2 px-4 relative"
+      className="bg-blue-700 text-white pt-4 px-4 relative"
       style={
         isLoggedIn
           ? {
@@ -214,17 +219,19 @@ const Header: React.FC = () => {
             >
               {!isSignUpProcess && (
                 <nav className="flex flex-col space-y-2 p-4">
-                  {/* <Link
-                    to="/"
-                    className="hover:text-orange-200 p-1"
-                    onClick={closeMobileMenu}
+                  <div
+                    onClick={() => {
+                      handleHomeClick();
+                      closeMobileMenu();
+                    }}
+                    className={`p-1 ${isActive('/') ? activeClass : inactiveClass}`}
                   >
                     {t("home")}
-                  </Link> */}
+                  </div>
                   {!isLoggedIn && (
                     <Link
                       to="/about"
-                      className="hover:text-orange-200 p-1"
+                      className={`p-1 ${isActive('/about') ? activeClass : inactiveClass}`}
                       onClick={closeMobileMenu}
                     >
                       {t("aboutUs.title")}
@@ -232,14 +239,14 @@ const Header: React.FC = () => {
                   )}
                   <Link
                     to="/tasks"
-                    className="hover:text-orange-200 p-1"
+                    className={`p-1 ${isActive('/tasks') ? activeClass : inactiveClass}`}
                     onClick={closeMobileMenu}
                   >
                     {t("taskList")}
                   </Link>
                   <Link
                     to="/info"
-                    className="hover:text-orange-200 p-1"
+                    className={`p-1 ${isActive('/info') ? activeClass : inactiveClass}`}
                     onClick={closeMobileMenu}
                   >
                     {t("informationHub")}
@@ -363,25 +370,34 @@ const Header: React.FC = () => {
               <li>
                 <div
                   onClick={handleHomeClick}
-                  className="hover:text-orange-200 px-2 cursor-pointer"
+                  className={`px-2 cursor-pointer ${isActive('/') ? activeClass : inactiveClass}`}
                 >
                   {t("home")}
                 </div>
               </li>
               {!isLoggedIn && (
                 <li>
-                  <Link to="/about" className="hover:text-orange-200 px-2">
+                  <Link
+                    to="/about"
+                    className={`px-2 ${isActive('/about') ? activeClass : inactiveClass}`}
+                  >
                     {t("aboutUs.title")}
                   </Link>
                 </li>
               )}
               <li>
-                <Link to="/tasks" className="hover:text-orange-200 px-2">
+                <Link
+                  to="/tasks"
+                  className={`px-2 ${isActive('/tasks') ? activeClass : inactiveClass}`}
+                >
                   {t("taskList")}
                 </Link>
               </li>
               <li>
-                <Link to="/info" className="hover:text-orange-200 px-2">
+                <Link
+                  to="/info"
+                  className={`px-2 ${isActive('/info') ? activeClass : inactiveClass}`}
+                >
                   {t("informationHub")}
                 </Link>
               </li>
