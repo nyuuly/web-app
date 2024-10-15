@@ -30,7 +30,7 @@ const NationDropdownlist: React.FC<NationDropdownlistProps> = ({ label }) => {
 
   return (
     <div className="relative text-black" ref={dropdownRef}>
-      <label className="block text-sm font-medium text-gray-700 mb-1">{label}</label>
+      <label className="block text-lg font-medium mb-2">{label}</label>
       <div
         className="border border-gray-100 rounded-md p-2 flex items-center justify-between cursor-pointer bg-white"
         onClick={() => setIsOpen(!isOpen)}

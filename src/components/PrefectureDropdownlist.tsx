@@ -3,9 +3,10 @@ import { FaChevronDown } from 'react-icons/fa';
 
 interface PrefectureDropdownlistProps {
   label: string;
+  onChange: (value: string) => void;
 }
 
-const PrefectureDropdownlist: React.FC<PrefectureDropdownlistProps> = ({ label }) => {
+const PrefectureDropdownlist: React.FC<PrefectureDropdownlistProps> = ({ label, onChange }) => {
   const [selectedPrefecture, setSelectedPrefecture] = useState('');
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
@@ -30,7 +31,7 @@ const PrefectureDropdownlist: React.FC<PrefectureDropdownlistProps> = ({ label }
 
   return (
     <div className="relative text-black" ref={dropdownRef}>
-      <label className="block text-sm font-medium text-gray-700 mb-1">{label}</label>
+      <label className="block text-lg font-medium mb-2">{label}</label>
       <div
         className="border border-gray-100 rounded-md p-2 flex items-center justify-between cursor-pointer bg-white"
         onClick={() => setIsOpen(!isOpen)}
@@ -50,6 +51,7 @@ const PrefectureDropdownlist: React.FC<PrefectureDropdownlistProps> = ({ label }
               onClick={() => {
                 setSelectedPrefecture(prefecture);
                 setIsOpen(false);
+                onChange(prefecture);
               }}
             >
               {prefecture}
