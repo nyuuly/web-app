@@ -1,7 +1,7 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
-import cardImage from "../../assets/img/mailbox.png";
-import idCardImage from "../../assets/img/idCard.png";
+import cardImage from "../../../assets/img/mailbox.png";
+import idCardImage from "../../../assets/img/idCard.png";
 import { FiArrowRight } from "react-icons/fi";
 import {
   FaAddressCard,
