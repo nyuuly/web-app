@@ -5,12 +5,8 @@ const HomeAfterLogin: React.FC = () => {
   return (
     <main>
       <FullwBgWrapper
-        bgClassName="pb-24"
-        // style={{
-        //   background: 'linear-gradient(180deg, #051C58 0%, #3D4EDD 51%, #FFA555 100%)',
-        // }}
-      >
-        <div className="container mx-auto px-4 py-12 text-white">TEST after login</div>
+        bgClassName="pb-24">
+        <div className="container mx-auto px-4 py-12">TEST after login</div>
         </FullwBgWrapper>
     </main>
   );

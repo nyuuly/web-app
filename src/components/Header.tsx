@@ -106,8 +106,17 @@ const Header: React.FC = () => {
   const isActive = (path: string) => location.pathname === path;
 
   return (
-    <header className="bg-blue-700 text-white pt-4 pb-2 px-4 relative" 
-    style={isLoggedIn? {background: 'linear-gradient(180deg, #051C58 0%, #3D4EDD 51%, #FFA555 100%)'}: {}}>
+    <header
+      className="bg-blue-700 text-white pt-4 pb-2 px-4 relative"
+      style={
+        isLoggedIn
+          ? {
+              background:
+                "linear-gradient(180deg, #051C58 0%, #3D4EDD 51%, #FFA555 100%)",
+            }
+          : {}
+      }
+    >
       <div className="container mx-auto">
         <div className="flex justify-between items-center">
           <div
@@ -212,13 +221,15 @@ const Header: React.FC = () => {
                   >
                     {t("home")}
                   </Link> */}
-                  <Link
-                    to="/about"
-                    className="hover:text-orange-200 p-1"
-                    onClick={closeMobileMenu}
-                  >
-                    {t("aboutUs.title")}
-                  </Link>
+                  {!isLoggedIn && (
+                    <Link
+                      to="/about"
+                      className="hover:text-orange-200 p-1"
+                      onClick={closeMobileMenu}
+                    >
+                      {t("aboutUs.title")}
+                    </Link>
+                  )}
                   <Link
                     to="/tasks"
                     className="hover:text-orange-200 p-1"
@@ -332,13 +343,16 @@ const Header: React.FC = () => {
         {isLoggedIn && (
           <div className="flex flex-row gap-4 my-8">
             <div className="w-full w-1/2 pr-4 md:pr-8">
-            <h1 className="text-4xl font-semibold hidden md:block ">
-            Welcome to Nyuuly,<br/>
-            User_Name_here
-            </h1>
+              <h1 className="text-4xl font-semibold hidden md:block ">
+                Welcome to Nyuuly,
+                <br />
+                User_Name_here
+              </h1>
             </div>
             <div className="w-full w-1/2 pl-4 md:pl-8 relative">
-            <h1 className="absolute bottom-0 right-0">Tell us more: TODO HERE</h1>
+              <h1 className="absolute bottom-0 right-0">
+                Tell us more: TODO HERE
+              </h1>
             </div>
           </div>
         )}
@@ -346,19 +360,21 @@ const Header: React.FC = () => {
         {!isSignUpProcess && (
           <nav className="hidden md:flex justify-center mt-4">
             <ul className="flex space-x-6">
-              {/* <li>
+              <li>
                 <div
                   onClick={handleHomeClick}
                   className="hover:text-orange-200 px-2 cursor-pointer"
                 >
                   {t("home")}
                 </div>
-              </li> */}
-              <li>
-                <Link to="/about" className="hover:text-orange-200 px-2">
-                  {t("aboutUs.title")}
-                </Link>
               </li>
+              {!isLoggedIn && (
+                <li>
+                  <Link to="/about" className="hover:text-orange-200 px-2">
+                    {t("aboutUs.title")}
+                  </Link>
+                </li>
+              )}
               <li>
                 <Link to="/tasks" className="hover:text-orange-200 px-2">
                   {t("taskList")}
