@@ -14,6 +14,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import logoImg from "../assets/logo.svg";
 import { changeLanguage } from "../i18n/i18n";
 import { useAuth } from "../contexts/AuthContext";
+import UserProfile from '../pages/UserProfile';
 
 const Header: React.FC = () => {
   const { t } = useTranslation();
@@ -26,6 +27,7 @@ const Header: React.FC = () => {
   const mobileMenuRef = useRef<HTMLDivElement>(null);
   const languageMenuRef = useRef<HTMLDivElement>(null);
   const location = useLocation();
+  const [isProfileOpen, setIsProfileOpen] = useState(false);
 
   const isSignUpProcess =
     location.pathname.startsWith("/signup") ||
@@ -60,6 +62,14 @@ const Header: React.FC = () => {
 
   const handleSignIn = () => {
     navigate("/signin");
+  };
+
+  const handleProfileClick = () => {
+    setIsProfileOpen(true);
+  };
+
+  const handleCloseProfile = () => {
+    setIsProfileOpen(false);
   };
 
   useEffect(() => {
@@ -170,15 +180,12 @@ const Header: React.FC = () => {
             </div>
             {isLoggedIn ? (
               <>
-                <button className="text-white hover:text-orange-200 text-sm flex items-center">
-                  <FaRegUserCircle className="mr-1" />
-                  Profile
-                </button>
                 <button
                   className="text-white hover:text-orange-200 text-sm flex items-center"
-                  onClick={handleLogout}
+                  onClick={handleProfileClick}
                 >
-                  Logout
+                  <FaRegUserCircle className="mr-1" />
+                  Profile
                 </button>
               </>
             ) : (
@@ -405,6 +412,13 @@ const Header: React.FC = () => {
           </nav>
         )}
       </div>
+
+      {/* UserProfile Panel */}
+      <AnimatePresence>
+        {isProfileOpen && (
+          <UserProfile onClose={handleCloseProfile} />
+        )}
+      </AnimatePresence>
     </header>
   );
 };
