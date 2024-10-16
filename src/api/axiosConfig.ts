@@ -86,7 +86,7 @@ axiosInstance.interceptors.response.use(
       // Here you would typically refresh the token
       // For now, we'll just logout the user
       localStorage.removeItem("access_token");
-      window.location.href = "/web-app/login";
+    //   window.location.href = "/web-app/login";
     }
     return Promise.reject(error);
   }

@@ -1,18 +1,36 @@
 import React, { useState } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
-import { useAuth } from '../../contexts/AuthContext';
+import { useAuth } from "../../contexts/AuthContext";
+import axiosInstance from "../../api/axiosConfig";
+import { API_ENDPOINTS } from "../../api/endpoints";
 
 const EmailInput: React.FC = () => {
-  const { setIsLoggedIn } = useAuth();
-
-  const navigate = useNavigate();
+  const { login } = useAuth();
   const [email, setEmail] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
 
-  const handleNext = () => {
-    localStorage.setItem('isLoggedIn', 'true');
-    setIsLoggedIn(true);
-    navigate("/");
+  const handleSignIn = async () => {
+    try {
+      const response = await axiosInstance.post(API_ENDPOINTS.LOGIN, { email });
+
+      if (response.data.access_token) {
+        login(response.data.access_token);
+        // Navigate to home page or dashboard
+        window.location.href = "/";
+      } else {
+        setErrorMessage("Login failed. Please try again.");
+      }
+    } catch (error) {
+      console.error("Login failed:", error);
+      if (error.response && error.response.status === 401) {
+        setErrorMessage(
+          "Email not found. Please check and try again OR Register"
+        );
+      } else {
+        setErrorMessage("An error occurred. Please try again later.");
+      }
+    }
   };
 
   const handleGoogleSignIn = () => {
@@ -27,13 +45,16 @@ const EmailInput: React.FC = () => {
       <input
         type="email"
         placeholder="Enter your email address"
-        className="border p-2 mb-4 w-full"
+        className="border p-2 mb-2 w-full"
         value={email}
         onChange={(e) => setEmail(e.target.value)}
       />
+      {errorMessage && (
+        <p className="text-red-500 text-sm mb-2">{errorMessage}</p>
+      )}
       <button
-        onClick={handleNext}
-        className="bg-orange-400 text-black w-full font-bold px-4 py-2 rounded hover:bg-orange-700 transition-colors"
+        onClick={handleSignIn}
+        className="bg-orange-400 text-black w-full font-bold px-4 py-2 rounded hover:bg-orange-500 transition-colors"
       >
         Sign in
       </button>
@@ -53,7 +74,7 @@ const EmailInput: React.FC = () => {
         <FcGoogle className="mr-2 text-xl" /> Sign in with Google
       </button>
 
-      {/* Login option */}
+      {/* Register option */}
       <div className="text-center mt-12">
         Don't have an account?
         <Link
