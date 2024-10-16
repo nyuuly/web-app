@@ -18,9 +18,31 @@ axiosInstance.interceptors.request.use(
         console.log('Params:', config.params);
       }
     }
+
+    const token = localStorage.getItem('access_token');
+    if (token) {
+      config.headers['Authorization'] = `Bearer ${token}`;
+    }
+
     return config;
   },
   (error) => {
+    return Promise.reject(error);
+  }
+);
+
+// Add response interceptor to handle token expiration
+axiosInstance.interceptors.response.use(
+  (response) => response,
+  async (error) => {
+    const originalRequest = error.config;
+    if (error.response.status === 401 && !originalRequest._retry) {
+      originalRequest._retry = true;
+      // Here you would typically refresh the token
+      // For now, we'll just logout the user
+      localStorage.removeItem('access_token');
+      window.location.href = '/web-app/login';
+    }
     return Promise.reject(error);
   }
 );

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc"; // Import Google icon
 
 interface EmailInputProps {
@@ -7,7 +7,6 @@ interface EmailInputProps {
 }
 
 const EmailInput: React.FC<EmailInputProps> = ({ onNext }) => {
-  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [isValid, setIsValid] = useState(true);
 

@@ -10,14 +10,11 @@ interface UserProfileProps {
 }
 
 const UserProfile: React.FC<UserProfileProps> = ({ onClose }) => {
-  const { setIsLoggedIn } = useAuth();
+  const { logout } = useAuth();
   const navigate = useNavigate();
 
   const handleLogout = () => {
-    localStorage.setItem("isLoggedIn", "false");
-    setIsLoggedIn(false);
-    localStorage.removeItem("isLoggedIn");
-    sessionStorage.clear();
+    logout();
     onClose();
     navigate("/", { replace: true });
   };

@@ -2,20 +2,19 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { FiArrowLeft } from "react-icons/fi";
 import OtpInput from "react-otp-input";
-import { useAuth } from '../../contexts/AuthContext';
 
-const VerificationCode: React.FC = () => {
+interface VerificationCodeProps {
+  email: string;
+  onVerify: (code: string) => void;
+}
+
+const VerificationCode: React.FC<VerificationCodeProps> = ({ email, onVerify }) => {
   const navigate = useNavigate();
   const [otp, setOtp] = useState("");
-  const { setIsLoggedIn } = useAuth();
 
   const handleNext = () => {
     if (otp.length === 6) {
-      // Here you can add verification logic
-      console.log("Verification code:", otp);
-      localStorage.setItem('isLoggedIn', 'true');
-      setIsLoggedIn(true);
-      navigate("/");
+      onVerify(otp);
     } else {
       alert("Please enter a valid 6-digit code");
     }
@@ -41,7 +40,7 @@ const VerificationCode: React.FC = () => {
       </div>
       <h1 className="text-4xl font-bold mb-4 font-manuale">Verify account</h1>
       <p className="mb-8">
-        We have sent a verification code to EMAIL_TO_BE_PLACED_HERE. Please
+        We have sent a verification code to {email}. Please
         check and input the verification code.
       </p>
       <div className="max-w-sm">

@@ -1,12 +1,46 @@
-import React from "react";
-import { Routes, Route } from "react-router-dom";
+import React, { useState } from "react";
+import { Routes, Route, useNavigate } from "react-router-dom";
 import EmailInput from "./EmailInput";
 import VerificationCode from "./VerificationCode";
 import Questions from "./Questions";
 import FullwBgWrapper from "../../components/misc/FullwBgWrapper";
 import WelcomeSignUp from "./WelcomeSignUp";
+import axiosInstance from "../../api/axiosConfig";
+import { API_ENDPOINTS } from "../../api/endpoints";
+import { useAuth } from "../../contexts/AuthContext";
 
 const SignUp: React.FC = () => {
+  const [email, setEmail] = useState("");
+  const navigate = useNavigate();
+  const { login } = useAuth();
+
+  const handleEmailSubmit = (submittedEmail: string) => {
+    setEmail(submittedEmail);
+    navigate("verification");
+  };
+
+  const handleVerification = async (code: string) => {
+    try {
+      const response = await axiosInstance.post(API_ENDPOINTS.REGISTER, {
+        email,
+        verificationCode: code
+      });
+      console.log("Registration successful:", response.data);
+      
+      if (response.data.access_token) {
+        // Store the token and update auth state
+        login(response.data.access_token);
+        navigate("/");
+      } else {
+        // TODO: show error message why the registation is failed
+        throw new Error("No access token received");
+      }
+    } catch (error) {
+      console.error("Registration failed:", error);
+      // Handle registration error (e.g., show error message to user)
+    }
+  };
+
   return (
     <main>
       <FullwBgWrapper
@@ -26,8 +60,8 @@ const SignUp: React.FC = () => {
             <div className="w-full md:w-1/2 px-4 md:pl-8">
               <div className="bg-white p-6 rounded-lg shadow-lg">
                 <Routes>
-                  <Route index element={<EmailInput />} />
-                  <Route path="verification" element={<VerificationCode />} />
+                  <Route index element={<EmailInput onNext={handleEmailSubmit} />} />
+                  <Route path="verification" element={<VerificationCode email={email} onVerify={handleVerification} />} />
                   <Route path="questions" element={<Questions />} />
                 </Routes>
               </div>

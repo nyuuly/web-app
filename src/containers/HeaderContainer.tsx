@@ -18,7 +18,7 @@ import UserProfile from '../pages/UserProfile';
 
 const Header: React.FC = () => {
   const { t } = useTranslation();
-  const { isLoggedIn, setIsLoggedIn } = useAuth();
+  const { isLoggedIn, logout } = useAuth();
   const navigate = useNavigate();
   const [isLanguageMenuOpen, setIsLanguageMenuOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -49,10 +49,7 @@ const Header: React.FC = () => {
   };
 
   const handleLogout = () => {
-    localStorage.setItem("isLoggedIn", "false");
-    setIsLoggedIn(false);
-    localStorage.removeItem("isLoggedIn");
-    sessionStorage.clear();
+    logout();
     navigate("/", { replace: true });
   };
 
