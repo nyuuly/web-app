@@ -1,5 +1,6 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
+import { Link } from "react-router-dom";
 
 interface ReasonProps {
   titleKey: string;
@@ -53,9 +54,12 @@ const DesignedForYou: React.FC = () => {
         ))}
       </div>
       <div className="flex justify-center mt-8">
-        <button className="bg-blue-600 text-white text-lg font-semibold py-3 px-12 rounded-lg hover:bg-blue-700 transition-colors duration-300 shadow-md">
+        <Link
+          to="/signup"
+          className="bg-blue-600 text-white text-lg font-semibold py-3 px-12 rounded-lg hover:bg-blue-700 transition-colors duration-300 shadow-md inline-block"
+        >
           Register for a nyuuly account today
-        </button>
+        </Link>
       </div>
     </div>
   );
