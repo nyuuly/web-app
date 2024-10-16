@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import { useTranslation } from 'react-i18next';
-import mockupImage1 from "../../assets/img/mockup_1-min.png";
-import mockupImage2 from "../../assets/img/mockup_2-min.png";
-import mockupImage3 from "../../assets/img/mockup_3-min.png";
+import features1Image from "../../../assets/img/features1-min.png";
 
 const Features: React.FC = () => {
   const { t } = useTranslation();
@@ -10,7 +8,11 @@ const Features: React.FC = () => {
 
   const TaskListContent = () => (
     <div className="flex flex-col md:flex-row gap-4">
-      To be updated here
+      <img 
+        src={features1Image} 
+        alt="Features" 
+        className="w-full h-auto"
+      />
       {/* <div className="md:w-1/2 bg-gray-100 p-4 md:p-8 rounded-lg flex flex-col items-center justify-between">
         <img
           src={mockupImage1}
@@ -67,14 +69,14 @@ const Features: React.FC = () => {
       {/* <p className="text-2xl text-center mb-12">
         {t('supportingYourJourney')}
       </p> */}
-      <div className="flex justify-center mb-6">
+      <div className="flex justify-center">
         {tabs.map((tab) => (
           <button
             key={tab.name}
-            className={`md:px-4 py-2 mx-2 md:text-xl ${
+            className={`px-8 md:px-12 py-2 mx-2 rounded-full md:text-xl ${
               activeTab === tab.name
-                ? "text-orange-400 border-b-4 border-orange-400 font-bold"
-                : "text-black hover:text-orange-400"
+                ? "bg-yellow-200 "
+                : "text-black hover:bg-yellow-100"
             }`}
             onClick={() => setActiveTab(tab.name)}
           >

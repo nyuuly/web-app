@@ -33,7 +33,8 @@ export default {
 
       },
       yellow: {
-        200: "#FFD755"
+        100: "#fae9b7",
+        200: "#FFD755",
       },
       orange: {
         100: "#FFECEC",
