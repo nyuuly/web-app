@@ -1,14 +1,33 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc"; // Import Google icon
 
-const EmailInput: React.FC = () => {
+interface EmailInputProps {
+  onNext: (email: string) => void;
+}
+
+const EmailInput: React.FC<EmailInputProps> = ({ onNext }) => {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
+  const [isValid, setIsValid] = useState(true);
+
+  const validateEmail = (email: string) => {
+    const re = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    return re.test(String(email).toLowerCase());
+  };
+
+  useEffect(() => {
+    if (email) {
+      setIsValid(validateEmail(email));
+    } else {
+      setIsValid(true); // Reset validation when email is empty
+    }
+  }, [email]);
 
   const handleNext = () => {
-    // Here you can add email validation logic if needed
-    navigate("/signup/verification");
+    if (isValid && email) {
+      onNext(email);
+    }
   };
 
   const handleGoogleSignIn = () => {
@@ -23,13 +42,21 @@ const EmailInput: React.FC = () => {
       <input
         type="email"
         placeholder="Enter your email address"
-        className="border p-2 mb-4 w-full"
+        className={`border p-2 mb-2 w-full ${!isValid ? 'border-red-500' : ''}`}
         value={email}
         onChange={(e) => setEmail(e.target.value)}
       />
+      {!isValid && (
+        <p className="text-red-500 text-sm mb-2 self-start">Please enter a valid email address</p>
+      )}
       <button
         onClick={handleNext}
-        className="bg-orange-400 text-black w-full font-bold px-4 py-2 rounded hover:bg-orange-700 transition-colors"
+        className={`w-full font-bold px-4 py-2 rounded transition-colors ${
+          isValid && email
+            ? 'bg-orange-400 text-black hover:bg-orange-400'
+            : 'bg-orange-100 cursor-not-allowed'
+        }`}
+        disabled={!isValid || !email}
       >
         Register
       </button>
