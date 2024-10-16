@@ -28,11 +28,9 @@ const SignUp: React.FC = () => {
       console.log("Registration successful:", response.data);
       
       if (response.data.access_token) {
-        // Store the token and update auth state
         login(response.data.access_token);
         navigate("/");
       } else {
-        // TODO: show error message why the registation is failed
         throw new Error("No access token received");
       }
     } catch (error) {
