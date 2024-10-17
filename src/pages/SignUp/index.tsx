@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { Routes, Route, useNavigate } from "react-router-dom";
 import EmailInput from "./EmailInput";
 import VerificationCode from "./VerificationCode";
-import Questions from "./Questions";
 import FullwBgWrapper from "../../components/misc/FullwBgWrapper";
 import WelcomeSignUp from "./WelcomeSignUp";
 import axiosInstance from "../../api/axiosConfig";
@@ -23,10 +22,10 @@ const SignUp: React.FC = () => {
     try {
       const response = await axiosInstance.post(API_ENDPOINTS.REGISTER, {
         email,
-        verificationCode: code
+        verificationCode: code,
       });
       console.log("Registration successful:", response.data);
-      
+
       if (response.data.access_token) {
         login(response.data.access_token);
         navigate("/");
@@ -35,8 +34,12 @@ const SignUp: React.FC = () => {
       }
     } catch (error) {
       console.error("Registration failed:", error);
-      // Handle registration error (e.g., show error message to user)
     }
+  };
+
+  const handleGoogleSignIn = () => {
+    // Implement Google Sign-In logic here
+    console.log("Sign in with Google");
   };
 
   return (
@@ -58,9 +61,24 @@ const SignUp: React.FC = () => {
             <div className="w-full md:w-1/2 px-4 md:pl-8">
               <div className="bg-white p-6 rounded-lg shadow-lg">
                 <Routes>
-                  <Route index element={<EmailInput onNext={handleEmailSubmit} />} />
-                  <Route path="verification" element={<VerificationCode email={email} onVerify={handleVerification} />} />
-                  <Route path="questions" element={<Questions />} />
+                  <Route
+                    index
+                    element={
+                      <EmailInput
+                        onNext={handleEmailSubmit}
+                        onGoogleSignIn={handleGoogleSignIn}
+                      />
+                    }
+                  />
+                  <Route
+                    path="verification"
+                    element={
+                      <VerificationCode
+                        email={email}
+                        onVerify={handleVerification}
+                      />
+                    }
+                  />
                 </Routes>
               </div>
             </div>
