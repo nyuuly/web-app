@@ -1,64 +1,37 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
-import { useAuth } from "../../contexts/AuthContext";
-import axiosInstance from "../../api/axiosConfig";
-import { API_ENDPOINTS } from "../../api/endpoints";
+import EmailInputBox from "../../components/EmailInputBox";
 
-const EmailInput: React.FC = () => {
-  const navigate = useNavigate();
-  const { login } = useAuth();
-  const [email, setEmail] = useState("");
-  const [errorMessage, setErrorMessage] = useState("");
+interface EmailInputProps {
+  email: string;
+  setEmail: (email: string) => void;
+  errorMessage: string;
+  onSignIn: () => void;
+  onGoogleSignIn: () => void;
+}
 
-  const handleSignIn = async () => {
-    try {
-      const response = await axiosInstance.post(API_ENDPOINTS.LOGIN, { email });
-
-      if (response.data.access_token) {
-        login(response.data.access_token);
-        navigate("/");
-      } else {
-        setErrorMessage("Login failed. Please try again.");
-      }
-    } catch (error) {
-      console.error("Login failed:", error);
-      if (error.response && error.response.status === 401) {
-        setErrorMessage(
-          "Email not found. Please check and try again OR Register"
-        );
-      } else {
-        setErrorMessage("An error occurred. Please try again later.");
-      }
-    }
-  };
-
-  const handleGoogleSignIn = () => {
-    // Implement Google Sign-In logic here
-    console.log("Sign in with Google");
-  };
-
+const EmailInput: React.FC<EmailInputProps> = ({
+  email,
+  setEmail,
+  errorMessage,
+  onSignIn,
+  onGoogleSignIn
+}) => {
   return (
     <div className="container mx-auto px-4 py-4 text-black">
       <h1 className="text-4xl font-bold mb-4 font-manuale">Sign In</h1>
-      <label>Email Address</label>
-      <input
-        type="email"
-        placeholder="Enter your email address"
-        className="border p-2 mb-2 w-full"
+      <EmailInputBox
         value={email}
-        onChange={(e) => setEmail(e.target.value)}
+        onChange={setEmail}
+        onSubmit={onSignIn}
+        placeholder="Enter your email address"
+        label="Email Address"
+        buttonText="Sign in"
       />
       {errorMessage && (
         <p className="text-red-500 text-sm mb-2">{errorMessage}</p>
       )}
-      <button
-        onClick={handleSignIn}
-        className="bg-orange-400 text-black w-full font-bold px-4 py-2 rounded hover:bg-orange-500 transition-colors"
-      >
-        Sign in
-      </button>
 
       {/* Divider with OR */}
       <div className="flex items-center my-4 md:my-12">
@@ -69,7 +42,7 @@ const EmailInput: React.FC = () => {
 
       {/* Sign in with Google option */}
       <button
-        onClick={handleGoogleSignIn}
+        onClick={onGoogleSignIn}
         className="w-full border border-gray-300 text-black font-bold px-4 py-2 rounded flex items-center justify-center hover:bg-gray-100 transition-colors"
       >
         <FcGoogle className="mr-2 text-xl" /> Sign in with Google
