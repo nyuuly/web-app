@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
 import { useAuth } from "../../contexts/AuthContext";
 import axiosInstance from "../../api/axiosConfig";
 import { API_ENDPOINTS } from "../../api/endpoints";
 
 const EmailInput: React.FC = () => {
+  const navigate = useNavigate();
   const { login } = useAuth();
   const [email, setEmail] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
@@ -16,8 +18,7 @@ const EmailInput: React.FC = () => {
 
       if (response.data.access_token) {
         login(response.data.access_token);
-        // Navigate to home page or dashboard
-        window.location.href = "/";
+        navigate("/");
       } else {
         setErrorMessage("Login failed. Please try again.");
       }
