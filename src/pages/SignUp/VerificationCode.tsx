@@ -30,6 +30,13 @@ const VerificationCode: React.FC<VerificationCodeProps> = ({ email, onVerify }) 
     // You might want to add some visual feedback or disable the button temporarily
   };
 
+  const handleOtpChange = (value: string) => {
+    // Only allow numeric input
+    if (/^\d*$/.test(value)) {
+      setOtp(value);
+    }
+  };
+
   return (
     <div className="container mx-auto px-4 py-4 text-black">
       <div
@@ -46,16 +53,18 @@ const VerificationCode: React.FC<VerificationCodeProps> = ({ email, onVerify }) 
       <div className="max-w-sm">
         <OtpInput
           value={otp}
-          onChange={setOtp}
+          onChange={handleOtpChange}
           numInputs={6}
           renderInput={(props) => (
             <input
               {...props}
               style={{ width: "44px", height: "44px" }}
               className="text-center border rounded-md text-xl font-bold"
+              type="tel"
             />
           )}
           containerStyle="flex justify-between mb-8"
+          inputType="tel"
         />
       </div>
       <div className="mb-4">
