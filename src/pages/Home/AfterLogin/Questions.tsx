@@ -4,7 +4,7 @@ import NationDropdownlist from "../../../components/NationDropdownlist";
 import CustomDatePicker from "../../../components/CustomDatePicker";
 import bicycleImage from "../../../assets/img/bicycle.png";
 
-type TravelCompanion = "me" | "partner" | "children" | "partner_n_children";
+type TravelCompanion = "ME" | "ME_PARTNER" | "ME_CHILDREN" | "ME_PARTNER_CHILDREN";
 
 interface QuestionsProps {
   onClose: () => void;
@@ -23,10 +23,10 @@ const Questions: React.FC<QuestionsProps> = ({ onClose, onFinish }) => {
   const [nationality, setNationality] = useState<string>("");
 
   const travelOptions = [
-    { label: "Just me", value: "me" },
-    { label: "With my partner", value: "partner" },
-    { label: "With my children", value: "children" },
-    { label: "With my partner & children", value: "partner_n_children" },
+    { label: "Just me", value: "ME" },
+    { label: "With my partner", value: "ME_PARTNER" },
+    { label: "With my children", value: "ME_CHILDREN" },
+    { label: "With my partner & children", value: "ME_PARTNER_CHILDREN" },
   ];
 
   const handleFinish = () => {
@@ -83,8 +83,8 @@ const Questions: React.FC<QuestionsProps> = ({ onClose, onFinish }) => {
                   onClick={() => setTravelCompanion(option.value as TravelCompanion)}
                   className={`flex-1 py-6 px-4 rounded ${
                     travelWith === option.value
-                      ? "bg-blue-200 text-white"
-                      : "bg-gray-200 text-gray-700 hover:bg-blue-100"
+                      ? "bg-orange-400 text-black"
+                      : "bg-gray-200 text-gray-700 hover:bg-gray-100"
                   }`}
                 >
                   {option.label}

@@ -9,7 +9,7 @@ import { API_ENDPOINTS } from "../../../api/endpoints";
 
 const HomeAfterLogin: React.FC = () => {
   const [isQuestionsOpen, setIsQuestionsOpen] = useState(false);
-  const { user } = useAuth();
+  const { user, login } = useAuth();
 
   useEffect(() => {
     if (isQuestionsOpen) {
@@ -49,11 +49,17 @@ const HomeAfterLogin: React.FC = () => {
       };
       console.log("Questionnaire answers:", userDataToSubmit);
 
-      const response = await axiosInstance.post(API_ENDPOINTS.UPDATE_PROFILE, userDataToSubmit);
+      const response = await axiosInstance.put(API_ENDPOINTS.UPDATE_PROFILE, userDataToSubmit);
 
       console.log("Profile updated successfully:", response.data);
+      
+      // Update auth context and local storage with the latest user data
+      if (response.data.user) {
+        const updatedUser = { ...user, ...response.data.user };
+        login(localStorage.getItem('access_token') || '', updatedUser);
+      }
+
       setIsQuestionsOpen(false);
-      // You might want to update the user context here with the new information
     } catch (error) {
       console.error("Failed to update profile:", error);
       // Handle error (e.g., show error message to user)

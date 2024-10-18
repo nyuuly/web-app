@@ -25,5 +25,16 @@ export const mockResponses = {
         movingDate: null
       }
     },
+    '/user/profile': {
+      message: "Profile updated successfully",
+      user: {
+        username: null,
+        preferredLanguage: "en",
+        movingDate: "2024-10-24T00:00:00.000Z",
+        destination: "Tokyo",
+        fromCountry: "vi",
+        travelWith: "ME_PARTNER_CHILDREN"
+      }
+    },
     // Add other mock responses here as needed
   };
