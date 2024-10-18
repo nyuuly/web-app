@@ -8,11 +8,17 @@ type TravelCompanion = "me" | "partner" | "children" | "partner_n_children";
 
 interface QuestionsProps {
   onClose: () => void;
+  onFinish: (data: {
+    arrivalDate: Date | null;
+    prefecture: string;
+    nationality: string;
+    travelWith: string | null;
+  }) => void;
 }
 
-const Questions: React.FC<QuestionsProps> = ({ onClose }) => {
+const Questions: React.FC<QuestionsProps> = ({ onClose, onFinish }) => {
   const [arrivalDate, setArrivalDate] = useState<Date | null>(null);
-  const [travelCompanion, setTravelCompanion] = useState<TravelCompanion | null>(null);
+  const [travelWith, setTravelCompanion] = useState<TravelCompanion | null>(null);
   const [prefecture, setPrefecture] = useState<string>("");
   const [nationality, setNationality] = useState<string>("");
 
@@ -24,15 +30,12 @@ const Questions: React.FC<QuestionsProps> = ({ onClose }) => {
   ];
 
   const handleFinish = () => {
-    const result = {
+    onFinish({
       arrivalDate,
       prefecture,
       nationality,
-      travelCompanion,
-    };
-    console.log("Form data:", result);
-    // Here you can add logic to send the data to an API in the future
-    onClose(); // Close the slide-up after finishing
+      travelWith,
+    });
   };
 
   return (
@@ -52,6 +55,7 @@ const Questions: React.FC<QuestionsProps> = ({ onClose }) => {
             <PrefectureDropdownlist 
               label="Where in Japan are you moving to?" 
               onChange={(value: string) => setPrefecture(value)}
+              value={prefecture}
             />
           </div>
           <div className="mt-4 text-right">
@@ -66,6 +70,7 @@ const Questions: React.FC<QuestionsProps> = ({ onClose }) => {
           <NationDropdownlist 
             label="What is your country of citizenship?" 
             onChange={(value: string) => setNationality(value)}
+            value={nationality}
           />
           <div className="mt-8">
             <label className="block text-black text-lg font-medium mb-2">
@@ -77,7 +82,7 @@ const Questions: React.FC<QuestionsProps> = ({ onClose }) => {
                   key={option.value}
                   onClick={() => setTravelCompanion(option.value as TravelCompanion)}
                   className={`flex-1 py-6 px-4 rounded ${
-                    travelCompanion === option.value
+                    travelWith === option.value
                       ? "bg-blue-200 text-white"
                       : "bg-gray-200 text-gray-700 hover:bg-blue-100"
                   }`}

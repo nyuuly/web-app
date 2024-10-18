@@ -4,6 +4,8 @@ import Questions from "./Questions";
 import { FiXCircle } from "react-icons/fi";
 import TellUsMore from "./TellUsMore";
 import { useAuth } from "../../../contexts/AuthContext";
+import axiosInstance from "../../../api/axiosConfig";
+import { API_ENDPOINTS } from "../../../api/endpoints";
 
 const HomeAfterLogin: React.FC = () => {
   const [isQuestionsOpen, setIsQuestionsOpen] = useState(false);
@@ -26,6 +28,37 @@ const HomeAfterLogin: React.FC = () => {
   };
 
   const showTellUsMore = !user?.movingDate && !user?.fromCountry;
+
+  const handleFinish = async (questionData: {
+    arrivalDate: Date | null;
+    prefecture: string;
+    nationality: string;
+    travelWith: string | null;
+  }) => {
+    try {
+      const { arrivalDate, prefecture, nationality, travelWith } = questionData;
+      
+      const arrivalDateString = arrivalDate ? arrivalDate.toISOString() : null;
+
+      const userDataToSubmit = {
+        email: user?.email,
+        movingDate: arrivalDateString,
+        destination: prefecture,
+        fromCountry: nationality,
+        travelWith,
+      };
+      console.log("Questionnaire answers:", userDataToSubmit);
+
+      const response = await axiosInstance.post(API_ENDPOINTS.UPDATE_PROFILE, userDataToSubmit);
+
+      console.log("Profile updated successfully:", response.data);
+      setIsQuestionsOpen(false);
+      // You might want to update the user context here with the new information
+    } catch (error) {
+      console.error("Failed to update profile:", error);
+      // Handle error (e.g., show error message to user)
+    }
+  };
 
   return (
     <main>
@@ -55,7 +88,7 @@ const HomeAfterLogin: React.FC = () => {
               </button>
             </div>
             <div className="flex-grow overflow-y-auto">
-              <Questions onClose={handleCloseQuestions} />
+              <Questions onClose={handleCloseQuestions} onFinish={handleFinish} />
             </div>
           </motion.div>
         )}
