@@ -13,8 +13,14 @@ const SignUp: React.FC = () => {
   const navigate = useNavigate();
   const { login } = useAuth();
 
-  const handleEmailSubmit = (submittedEmail: string) => {
+  const handleEmailSubmit = async (submittedEmail: string) => {
     setEmail(submittedEmail);
+    //send OTP
+    const response = await axiosInstance.post(API_ENDPOINTS.SEND_OPT, {
+      email: submittedEmail,
+    });
+    console.log(`Send OTP while registration - response:`);
+    console.log(response);
     navigate("verification");
   };
 
@@ -26,11 +32,11 @@ const SignUp: React.FC = () => {
       });
       console.log("Registration successful:", response.data);
 
-      if (response.data.access_token) {
-        login(response.data.access_token);
+      if (response.data.access_token && response.data.user) {
+        login(response.data.access_token, response.data.user);
         navigate("/");
       } else {
-        throw new Error("No access token received");
+        console.error("Login failed. Please try again.");
       }
     } catch (error) {
       console.error("Registration failed:", error);
