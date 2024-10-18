@@ -8,7 +8,8 @@ import InfoHubBeforeLogin from './pages/InformationHub/BeforeLogin';
 import InfoHubAfterLogin from './pages/InformationHub/AfterLogin';
 import TaskListBeforeLogin from './pages/TaskList/BeforeLogin';
 import TaskListAfterLogin from './pages/TaskList/AfterLogin';
-import About from './pages/AboutUs'; // Make sure to create this component if it doesn't exist
+import About from './pages/AboutUs'; 
+import UserProfile from './pages/UserProfile';
 
 interface AppRoutesProps {
   isLoggedIn: boolean;
@@ -34,7 +35,8 @@ const AppRoutes: React.FC<AppRoutesProps> = ({ isLoggedIn }) => {
       <Route path="/signup/*" element={isLoggedIn ? <Navigate to="/" replace /> : <SignUp />} />
       <Route path="/info" element={<Info />} />
       <Route path="/tasks" element={<Tasks />} />
-      <Route path="/about" element={<About />} /> {/* Added About route */}
+      <Route path="/about" element={<About />} />
+      <Route path="/profile/*" element={!isLoggedIn ? <Navigate to="/" replace /> : <UserProfile />} />
     </Routes>
   );
 };

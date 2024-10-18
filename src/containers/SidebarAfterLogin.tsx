@@ -10,13 +10,11 @@ import {
   FiHome,
   FiList,
   FiInfo,
+  FiUser,
 } from "react-icons/fi";
-import { FaRegUserCircle } from "react-icons/fa";
-import { AnimatePresence } from "framer-motion";
 import logoImg from "../assets/logo.svg";
 import { changeLanguage } from "../i18n/i18n";
 import { useAuth } from "../contexts/AuthContext";
-import UserProfile from '../pages/UserProfile';
 
 const SidebarAfterLogin: React.FC = () => {
   const { t } = useTranslation();
@@ -24,7 +22,6 @@ const SidebarAfterLogin: React.FC = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const [isLanguageMenuOpen, setIsLanguageMenuOpen] = useState(false);
-  const [isProfileOpen, setIsProfileOpen] = useState(false);
 
   const handleChangeLanguage = async (lng: string) => {
     await changeLanguage(lng);
@@ -34,14 +31,6 @@ const SidebarAfterLogin: React.FC = () => {
   const handleLogout = () => {
     logout();
     navigate("/", { replace: true });
-  };
-
-  const handleProfileClick = () => {
-    setIsProfileOpen(true);
-  };
-
-  const handleCloseProfile = () => {
-    setIsProfileOpen(false);
   };
 
   const isActive = (path: string) => location.pathname === path;
@@ -111,22 +100,18 @@ const SidebarAfterLogin: React.FC = () => {
             <button onClick={() => handleChangeLanguage("ja")} className="w-full text-left p-2 hover:bg-white hover:bg-opacity-10 transition-colors duration-200">日本語</button>
           </div>
         )}
-        <button className="flex items-center w-full p-2 mt-2 hover:bg-white hover:bg-opacity-10 transition-colors duration-200" onClick={handleProfileClick}>
-          <FaRegUserCircle className="mr-2" />
+        <Link 
+          to="/profile" 
+          className="flex items-center w-full p-2 mt-2 hover:bg-white hover:bg-opacity-10 transition-colors duration-200"
+        >
+          <FiUser className="mr-2" />
           Profile
-        </button>
+        </Link>
         <button className="flex items-center w-full p-2 mt-2 hover:bg-white hover:bg-opacity-10 transition-colors duration-200" onClick={handleLogout}>
           <FiX className="mr-2" />
           Logout
         </button>
       </div>
-
-      {/* UserProfile Panel */}
-      <AnimatePresence>
-        {isProfileOpen && (
-          <UserProfile onClose={handleCloseProfile} />
-        )}
-      </AnimatePresence>
     </aside>
   );
 };

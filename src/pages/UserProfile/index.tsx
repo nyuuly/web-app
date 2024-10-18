@@ -1,62 +1,98 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import { FaUserCircle } from 'react-icons/fa';
+import React, { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthContext';
-import { FiXCircle } from "react-icons/fi";
-import { useNavigate } from 'react-router-dom';
 
-interface UserProfileProps {
-  onClose: () => void;
-}
-
-const UserProfile: React.FC<UserProfileProps> = ({ onClose }) => {
+const UserProfile: React.FC = () => {
+  const [email, setEmail] = useState('');
+  const [displayName, setDisplayName] = useState('');
+  const [language, setLanguage] = useState('en');
   const { logout } = useAuth();
   const navigate = useNavigate();
 
   const handleLogout = () => {
     logout();
-    onClose();
-    navigate("/", { replace: true });
+    navigate('/');
   };
 
   return (
-    <motion.div
-      initial={{ x: '100%' }}
-      animate={{ x: 0 }}
-      exit={{ x: '100%' }}
-      transition={{ type: 'spring', stiffness: 300, damping: 30 }}
-      className="fixed top-0 right-0 h-full w-80 bg-white shadow-lg z-50 overflow-y-auto text-black"
-    >
-      <div className="p-6">
-        <div className="flex justify-between items-center mb-6">
-          <h2 className="text-2xl font-bold">User Profile</h2>
-          <button
-            onClick={onClose}
-            className="text-black hover:text-gray-700"
-          >
-            <FiXCircle/>
-          </button>
-        </div>
-        <div className="flex flex-col items-center mb-6">
-          <FaUserCircle size={80} className="text-gray-400 mb-2" />
-          <p className="text-lg font-semibold">John Doe</p>
-        </div>
+    <div className="container mx-auto px-4 py-8">
+      <h1 className="text-3xl font-bold mb-8">User Profile</h1>
+
+      {/* Personal Information Section */}
+      <section className="mb-8">
+        <h2 className="text-2xl font-semibold mb-4">Personal Information</h2>
         <div className="space-y-4">
-          <button className="w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600">
-            Change Avatar
-          </button>
-          <button className="w-full bg-green-500 text-white py-2 rounded hover:bg-green-600">
-            Reset Password
-          </button>
-          <button
-            onClick={handleLogout}
-            className="w-full bg-blue-100 text-black py-2 rounded hover:bg-red-600"
-          >
-            Logout
-          </button>
+          <div>
+            <label htmlFor="email" className="block mb-2">Email Address</label>
+            <div className="flex">
+              <input
+                type="email"
+                id="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="flex-grow border rounded-l px-3 py-2"
+              />
+              <button className="bg-blue-500 text-white px-4 py-2 rounded-r">Update</button>
+            </div>
+          </div>
+          <div>
+            <label htmlFor="displayName" className="block mb-2">Display Name</label>
+            <div className="flex">
+              <input
+                type="text"
+                id="displayName"
+                value={displayName}
+                onChange={(e) => setDisplayName(e.target.value)}
+                className="flex-grow border rounded-l px-3 py-2"
+              />
+              <button className="bg-blue-500 text-white px-4 py-2 rounded-r">Save</button>
+            </div>
+          </div>
         </div>
-      </div>
-    </motion.div>
+      </section>
+
+      <hr className="my-8 border-gray-300" />
+
+      {/* Language Section */}
+      <section className="mb-8">
+        <h2 className="text-2xl font-semibold mb-4">Language</h2>
+        <div className="flex">
+          <select
+            value={language}
+            onChange={(e) => setLanguage(e.target.value)}
+            className="flex-grow border rounded-l px-3 py-2"
+          >
+            <option value="en">English</option>
+            <option value="ja">日本語</option>
+            <option value="vi">Tiếng Việt</option>
+          </select>
+          <button className="bg-blue-500 text-white px-4 py-2 rounded-r">Save</button>
+        </div>
+      </section>
+
+      <hr className="my-8 border-gray-300" />
+
+      {/* Others Section */}
+      <section className="mb-8">
+        <h2 className="text-2xl font-semibold mb-4">Others</h2>
+        <div className="flex flex-col sm:flex-row sm:space-x-4 space-y-2 sm:space-y-0">
+          <Link to="/terms" className="text-blue-500 hover:underline">Terms and Conditions</Link>
+          <Link to="/privacy" className="text-blue-500 hover:underline">Privacy Policy</Link>
+        </div>
+      </section>
+
+      <hr className="my-8 border-gray-300" />
+
+      {/* Logout Section */}
+      <section>
+        <button
+          onClick={handleLogout}
+          className="text-orange-400 px-4 py-2 rounded"
+        >
+          Logout
+        </button>
+      </section>
+    </div>
   );
 };
 
