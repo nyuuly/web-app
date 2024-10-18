@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import FullwBgWrapper from "../../../components/misc/FullwBgWrapper";
 import Questions from "./Questions";
 import { FiXCircle } from "react-icons/fi";
 import TellUsMore from "./TellUsMore";
+import { useAuth } from "../../../contexts/AuthContext";
 
 const HomeAfterLogin: React.FC = () => {
   const [isQuestionsOpen, setIsQuestionsOpen] = useState(false);
+  const { user } = useAuth();
 
   useEffect(() => {
     if (isQuestionsOpen) {
@@ -24,14 +25,14 @@ const HomeAfterLogin: React.FC = () => {
     setIsQuestionsOpen(false);
   };
 
+  const showTellUsMore = !user?.movingDate && !user?.fromCountry;
+
   return (
     <main>
-      <FullwBgWrapper bgClassName="pb-24">
-        <div className="container mx-auto max-w-7xl px-4 py-12 flex flex-col items-center">
-          <h1 className="text-4xl font-bold">Welcome to Nyuuly</h1>
-          <TellUsMore onOpen={() => setIsQuestionsOpen(true)} />
-        </div>
-      </FullwBgWrapper>
+      {showTellUsMore && (
+        <TellUsMore onOpen={() => setIsQuestionsOpen(true)} />
+      )}
+
       <AnimatePresence>
         {isQuestionsOpen && (
           <motion.div

@@ -1,6 +1,7 @@
 import React from "react";
 import { FiArrowRight } from "react-icons/fi";
 import bicycleImage from "../../../assets/img/bicycle.png";
+import FullwBgWrapper from "../../../components/misc/FullwBgWrapper";
 
 interface TellUsMoreProps {
   onOpen: () => void;
@@ -8,6 +9,9 @@ interface TellUsMoreProps {
 
 const TellUsMore: React.FC<TellUsMoreProps> = ({ onOpen }) => {
   return (
+    <FullwBgWrapper bgClassName="pb-24">
+    <div className="container mx-auto max-w-7xl px-4 py-12 flex flex-col items-center">
+      <h1 className="text-4xl font-bold">Welcome to Nyuuly</h1>
     <div
       onClick={onOpen}
       className="w-full mt-4 bg-blue-500 text-black p-8 rounded-lg cursor-pointer"
@@ -37,6 +41,8 @@ const TellUsMore: React.FC<TellUsMoreProps> = ({ onOpen }) => {
         </div>
       </div>
     </div>
+    </div>
+    </FullwBgWrapper>
   );
 };
 
