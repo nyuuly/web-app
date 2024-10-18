@@ -17,8 +17,8 @@ const SignIn: React.FC = () => {
     try {
       const response = await axiosInstance.post(API_ENDPOINTS.LOGIN, { email });
 
-      if (response.data.access_token) {
-        login(response.data.access_token);
+      if (response.data.access_token && response.data.user) {
+        login(response.data.access_token, response.data.user);
         navigate("/");
       } else {
         setErrorMessage("Login failed. Please try again.");

@@ -17,7 +17,7 @@ import { useAuth } from "../contexts/AuthContext";
 
 const Header: React.FC = () => {
   const { t } = useTranslation();
-  const { isLoggedIn, logout } = useAuth();
+  const { logout } = useAuth();
   const navigate = useNavigate();
   const [isLanguageMenuOpen, setIsLanguageMenuOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -44,11 +44,6 @@ const Header: React.FC = () => {
   const closeMobileMenu = () => {
     setIsMobileMenuOpen(false);
     setIsMobileLanguageMenuOpen(false);
-  };
-
-  const handleLogout = () => {
-    logout();
-    navigate("/", { replace: true });
   };
 
   const handleHomeClick = () => {
@@ -102,15 +97,11 @@ const Header: React.FC = () => {
 
   const isActive = (path: string) => location.pathname === path;
 
-  const activeClass = isLoggedIn
-    ? "text-blue-700 border-b-4 border-blue-700 font-bold"
-    : "text-orange-400 border-b-4 border-orange-400 font-bold";
-  const inactiveClass = isLoggedIn? "hover:text-gray-700" : "hover:text-orange-200";
+  const activeClass = "text-orange-400 border-b-4 border-orange-400 font-bold";
+  const inactiveClass = "hover:text-orange-200";
 
   return (
-    <header
-      className="text-white pt-4 px-4 relative bg-blue-700"
-    >
+    <header className="text-white pt-4 px-4 relative bg-blue-700">
       <div className="container mx-auto">
         <div className="flex justify-between items-center">
           <div
@@ -157,33 +148,21 @@ const Header: React.FC = () => {
                 </div>
               )}
             </div>
-            {isLoggedIn ? (
-              <>
-                <button
-                  className="text-white hover:text-orange-200 text-sm flex items-center"
-                  onClick={handleProfileClick}
-                >
-                  <FaRegUserCircle className="mr-1" />
-                  Profile
-                </button>
-              </>
-            ) : (
-              <>
-                <button
-                  className="text-white hover:text-orange-200 text-sm flex items-center"
-                  onClick={handleSignIn}
-                >
-                  <FaRegUserCircle className="mr-1" />
-                  {t("signin")}
-                </button>
-                <Link
-                  to="/signup"
-                  className="text-white hover:text-orange-200 text-sm"
-                >
-                  {t("register")}
-                </Link>
-              </>
-            )}
+            <>
+              <button
+                className="text-white hover:text-orange-200 text-sm flex items-center"
+                onClick={handleSignIn}
+              >
+                <FaRegUserCircle className="mr-1" />
+                {t("signin")}
+              </button>
+              <Link
+                to="/signup"
+                className="text-white hover:text-orange-200 text-sm"
+              >
+                {t("register")}
+              </Link>
+            </>
           </div>
 
           {/* Mobile Menu Button */}
@@ -210,29 +189,35 @@ const Header: React.FC = () => {
                       handleHomeClick();
                       closeMobileMenu();
                     }}
-                    className={`p-1 ${isActive('/') ? activeClass : inactiveClass}`}
+                    className={`p-1 ${
+                      isActive("/") ? activeClass : inactiveClass
+                    }`}
                   >
                     {t("home")}
                   </div>
-                  {!isLoggedIn && (
-                    <Link
-                      to="/about"
-                      className={`p-1 ${isActive('/about') ? activeClass : inactiveClass}`}
-                      onClick={closeMobileMenu}
-                    >
-                      {t("aboutUs.title")}
-                    </Link>
-                  )}
+                  <Link
+                    to="/about"
+                    className={`p-1 ${
+                      isActive("/about") ? activeClass : inactiveClass
+                    }`}
+                    onClick={closeMobileMenu}
+                  >
+                    {t("aboutUs.title")}
+                  </Link>
                   <Link
                     to="/tasks"
-                    className={`p-1 ${isActive('/tasks') ? activeClass : inactiveClass}`}
+                    className={`p-1 ${
+                      isActive("/tasks") ? activeClass : inactiveClass
+                    }`}
                     onClick={closeMobileMenu}
                   >
                     {t("taskList")}
                   </Link>
                   <Link
                     to="/info"
-                    className={`p-1 ${isActive('/info') ? activeClass : inactiveClass}`}
+                    className={`p-1 ${
+                      isActive("/info") ? activeClass : inactiveClass
+                    }`}
                     onClick={closeMobileMenu}
                   >
                     {t("informationHub")}
@@ -287,68 +272,30 @@ const Header: React.FC = () => {
                     </div>
                   )}
                 </div>
-                {isLoggedIn ? (
-                  <>
-                    <button
-                      className="text-white hover:text-orange-200 text-sm flex items-center p-1"
-                      onClick={closeMobileMenu}
-                    >
-                      <FaRegUserCircle className="mr-2" />
-                      Profile
-                    </button>
-                    <button
-                      className="text-white hover:text-orange-200 text-sm flex items-center p-1"
-                      onClick={() => {
-                        handleLogout();
-                        closeMobileMenu();
-                      }}
-                    >
-                      <FaRegUserCircle className="mr-2" />
-                      Logout
-                    </button>
-                  </>
-                ) : (
-                  <>
-                    <button
-                      className="text-white hover:text-orange-200 text-sm flex items-center p-1"
-                      onClick={() => {
-                        handleSignIn();
-                        closeMobileMenu();
-                      }}
-                    >
-                      <FaRegUserCircle className="mr-2" />
-                      {t("signin")}
-                    </button>
-                    <Link
-                      to="/signup"
-                      className="text-white hover:text-orange-200 text-sm flex items-center p-1"
-                      onClick={closeMobileMenu}
-                    >
-                      <FaRegUserCircle className="mr-2" />
-                      {t("register")}
-                    </Link>
-                  </>
-                )}
+
+                <button
+                  className="text-white hover:text-orange-200 text-sm flex items-center p-1"
+                  onClick={() => {
+                    handleSignIn();
+                    closeMobileMenu();
+                  }}
+                >
+                  <FaRegUserCircle className="mr-2" />
+                  {t("signin")}
+                </button>
+                <Link
+                  to="/signup"
+                  className="text-white hover:text-orange-200 text-sm flex items-center p-1"
+                  onClick={closeMobileMenu}
+                >
+                  <FaRegUserCircle className="mr-2" />
+                  {t("register")}
+                </Link>
               </div>
             </motion.div>
           )}
         </AnimatePresence>
-        {isLoggedIn && (
-          <div className="flex flex-row gap-4 my-8">
-            <div className="w-full w-1/2 pr-4 md:pr-8">
-              <h1 className="text-4xl font-semibold hidden md:block ">
-                Welcome to Nyuuly,
-                <br />
-                User_Name_here
-              </h1>
-            </div>
-            <div className="w-full w-1/2 pl-4 md:pl-8 relative">
-              <h1 className="absolute bottom-0 right-0">
-                Tell us more: TODO HERE
-              </h1>
-            </div>
-          </div>
-        )}
+
         {/* Desktop Navigation */}
         {!isSignUpProcess && (
           <nav className="hidden md:flex justify-center mt-4">
@@ -356,25 +303,29 @@ const Header: React.FC = () => {
               <li>
                 <div
                   onClick={handleHomeClick}
-                  className={`px-2 cursor-pointer ${isActive('/') ? activeClass : inactiveClass}`}
+                  className={`px-2 cursor-pointer ${
+                    isActive("/") ? activeClass : inactiveClass
+                  }`}
                 >
                   {t("home")}
                 </div>
               </li>
-              {!isLoggedIn && (
-                <li>
-                  <Link
-                    to="/about"
-                    className={`px-2 ${isActive('/about') ? activeClass : inactiveClass}`}
-                  >
-                    {t("aboutUs.title")}
-                  </Link>
-                </li>
-              )}
+              <li>
+                <Link
+                  to="/about"
+                  className={`px-2 ${
+                    isActive("/about") ? activeClass : inactiveClass
+                  }`}
+                >
+                  {t("aboutUs.title")}
+                </Link>
+              </li>
               <li>
                 <Link
                   to="/tasks"
-                  className={`px-2 ${isActive('/tasks') ? activeClass : inactiveClass}`}
+                  className={`px-2 ${
+                    isActive("/tasks") ? activeClass : inactiveClass
+                  }`}
                 >
                   {t("taskList")}
                 </Link>
@@ -382,7 +333,9 @@ const Header: React.FC = () => {
               <li>
                 <Link
                   to="/info"
-                  className={`px-2 ${isActive('/info') ? activeClass : inactiveClass}`}
+                  className={`px-2 ${
+                    isActive("/info") ? activeClass : inactiveClass
+                  }`}
                 >
                   {t("informationHub")}
                 </Link>

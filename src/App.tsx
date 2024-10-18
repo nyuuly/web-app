@@ -5,14 +5,14 @@ import AppRoutes from './AppRoutes';
 import Footer from './components/Footer';
 
 const AppContent: React.FC = () => {
-  const { isLoggedIn } = useAuth();
+  const { user } = useAuth();
 
   return (
     <Layout>
       <Suspense fallback={<div>Loading...</div>}>
-        <AppRoutes isLoggedIn={isLoggedIn} />
+        <AppRoutes isLoggedIn={!!user} />
       </Suspense>
-      {!isLoggedIn && <Footer />}
+      {!user && <Footer />}
     </Layout>
   );
 };

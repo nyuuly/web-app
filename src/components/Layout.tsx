@@ -8,11 +8,11 @@ interface LayoutProps {
 }
 
 const Layout: React.FC<LayoutProps> = ({ children }) => {
-  const { isLoggedIn } = useAuth();
+  const { user } = useAuth();
 
   return (
     <div className="min-h-screen">
-      {isLoggedIn ? (
+      {user ? (
         <div className="flex">
           <SidebarAfterLogin />
           <main className="flex-grow ml-64 p-4">

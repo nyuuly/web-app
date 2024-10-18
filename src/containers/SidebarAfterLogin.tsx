@@ -18,7 +18,7 @@ import { useAuth } from "../contexts/AuthContext";
 
 const SidebarAfterLogin: React.FC = () => {
   const { t } = useTranslation();
-  const { logout } = useAuth();
+  const { user, logout } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
   const [isLanguageMenuOpen, setIsLanguageMenuOpen] = useState(false);
@@ -105,7 +105,7 @@ const SidebarAfterLogin: React.FC = () => {
           className="flex items-center w-full p-2 mt-2 hover:bg-white hover:bg-opacity-10 transition-colors duration-200"
         >
           <FiUser className="mr-2" />
-          Profile
+          {user?.username || 'Profile'}
         </Link>
         <button className="flex items-center w-full p-2 mt-2 hover:bg-white hover:bg-opacity-10 transition-colors duration-200" onClick={handleLogout}>
           <FiX className="mr-2" />
