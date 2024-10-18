@@ -14,7 +14,6 @@ import { motion, AnimatePresence } from "framer-motion";
 import logoImg from "../assets/logo.svg";
 import { changeLanguage } from "../i18n/i18n";
 import { useAuth } from "../contexts/AuthContext";
-import UserProfile from '../pages/UserProfile';
 
 const Header: React.FC = () => {
   const { t } = useTranslation();
@@ -27,7 +26,6 @@ const Header: React.FC = () => {
   const mobileMenuRef = useRef<HTMLDivElement>(null);
   const languageMenuRef = useRef<HTMLDivElement>(null);
   const location = useLocation();
-  const [isProfileOpen, setIsProfileOpen] = useState(false);
 
   const isSignUpProcess =
     location.pathname.startsWith("/signup") ||
@@ -59,14 +57,6 @@ const Header: React.FC = () => {
 
   const handleSignIn = () => {
     navigate("/signin");
-  };
-
-  const handleProfileClick = () => {
-    setIsProfileOpen(true);
-  };
-
-  const handleCloseProfile = () => {
-    setIsProfileOpen(false);
   };
 
   useEffect(() => {
@@ -119,15 +109,7 @@ const Header: React.FC = () => {
 
   return (
     <header
-      className="bg-blue-700 text-white pt-4 px-4 relative"
-      style={
-        isLoggedIn
-          ? {
-              background:
-                "linear-gradient(180deg, #051C58 0%, #3D4EDD 51%, #FFA555 100%)",
-            }
-          : {}
-      }
+      className="text-white pt-4 px-4 relative bg-blue-700"
     >
       <div className="container mx-auto">
         <div className="flex justify-between items-center">
@@ -215,7 +197,7 @@ const Header: React.FC = () => {
           {isMobileMenuOpen && (
             <motion.div
               ref={mobileMenuRef}
-              className="md:hidden absolute left-0 right-0 bg-blue-700 shadow-lg z-50"
+              className="md:hidden absolute left-0 right-0 shadow-lg z-50"
               initial="closed"
               animate="open"
               exit="closed"
@@ -409,13 +391,6 @@ const Header: React.FC = () => {
           </nav>
         )}
       </div>
-
-      {/* UserProfile Panel */}
-      <AnimatePresence>
-        {isProfileOpen && (
-          <UserProfile onClose={handleCloseProfile} />
-        )}
-      </AnimatePresence>
     </header>
   );
 };
